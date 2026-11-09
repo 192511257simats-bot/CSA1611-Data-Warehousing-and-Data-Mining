@@ -1,0 +1,44 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 3
+dimension ['time', 'product', 'store', 'customer']: product
+  product: department -> category
+
+Cuboid: {'time': 'year', 'product': 'category', 'store': 'region', 'customer': 'ALL'} | filters: none
+ year  category region  net_sales  qty
+ 2025 Baby Food  North  61,824.35  373
+ 2025 Baby Food  South 121,752.37  683
+ 2025 Baby Food   West 133,033.79  747
+ 2025 Baby Soap  North  50,771.35  379
+ 2025 Baby Soap  South 111,677.86  684
+ 2025 Baby Soap   West 102,565.49  648
+ 2025 Batteries  North  51,633.90  344
+ 2025 Batteries  South  89,511.03  671
+ 2025 Batteries   West 106,736.13  677
+ 2025  Biscuits  North  63,115.26  466
+[360 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 3
+dimension ['time', 'product', 'store', 'customer']: store
+  store: region -> state
+
+Cuboid: {'time': 'year', 'product': 'category', 'store': 'state', 'customer': 'ALL'} | filters: none
+ year  category         state  net_sales  qty
+ 2025 Baby Food         Delhi  36,048.09  194
+ 2025 Baby Food       Gujarat  52,628.15  330
+ 2025 Baby Food   Maharashtra  80,405.64  417
+ 2025 Baby Food    Tamil Nadu  59,494.61  337
+ 2025 Baby Food     Telangana  62,257.76  346
+ 2025 Baby Food Uttar Pradesh  25,776.26  179
+ 2025 Baby Soap         Delhi  33,633.99  209
+ 2025 Baby Soap       Gujarat  56,172.85  346
+ 2025 Baby Soap   Maharashtra  46,392.64  302
+ 2025 Baby Soap    Tamil Nadu  57,006.35  321
+[720 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

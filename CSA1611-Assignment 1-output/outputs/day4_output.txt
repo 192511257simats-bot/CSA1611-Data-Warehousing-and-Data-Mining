@@ -1,0 +1,29 @@
+=== A. TEST ORIGINAL DESIGN: customer address / tier changes (Type-1 overwrite) ===
+customers that moved: 1569 (7.8%); changed tier: 2375 (11.9%)
+net sales attributed to the WRONG state by Type-1 : 4.08%
+net sales attributed to the WRONG loyalty tier     : 5.96%
+               type1_state_sales  asof_state_sales  error_%
+Delhi                 60242735.0        60734262.0     -1.0
+Gujarat               66656583.0        66117347.0      1.0
+Maharashtra           65752350.0        65984902.0     -0.0
+Tamil Nadu            65824950.0        66009212.0     -0.0
+Telangana             65944980.0        65715819.0      0.0
+Uttar Pradesh         63697575.0        63557630.0      0.0
+
+=== B. REVISED DESIGN: structural changes (DDL applied to the warehouse copy) ===
+DDL + backfill (channel=1 default) time: 0.17s
+
+=== C. HOURLY MICRO-BATCH at the 1,000,000-row base (avg hour = 2,500 lines; peak hour = 7,500 lines) ===
+{'lines': 2500, 'stage': 0.008, 'scd2': 0.038, 'fact_load': 0.077, 'agg_merge': 0.044, 'total': 0.167, 'scd_changes': 46}
+{'lines': 7500, 'stage': 0.017, 'scd2': 0.098, 'fact_load': 0.134, 'agg_merge': 0.054, 'total': 0.302, 'scd_changes': 124}
+FULL aggregate rebuild at 1,010,000 fact rows (original refresh method): 2.47s
+
+=== D. SCALE TEST: add ~1.8M rows (one month of online sales) then compare refresh methods ===
+fact rows = 2,810,000: FULL rebuild 6.98s  vs  INCREMENTAL hourly batch 0.175s  (speed-up x40)
+projection: 20,000 orders/day x 3 lines x 365 = 21,900,000 rows/yr -> full rebuild ~ 61s by year-end (linear)
+
+=== E. QUERY: sales by state and loyalty tier AS OF ORDER DATE (revised design) ===
+query time 1.33s (online rows only): [('Delhi', 'Bronze', 450357.0), ('Delhi', 'Gold', 139261.0), ('Delhi', 'Platinum', 54340.0), ('Delhi', 'Silver', 280631.0)]
+
+SCD-2 customer dimension grew from 20,000 to 20,216 rows after the 3 simulated hourly batches
+storage: 2 new int columns x 21.9M rows/yr = 175 MB/yr; SCD-2 growth at 1,000 changes/month x 90 B = 1.08 MB/yr

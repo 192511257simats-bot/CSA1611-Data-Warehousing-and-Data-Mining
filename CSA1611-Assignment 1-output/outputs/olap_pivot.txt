@@ -1,0 +1,34 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 6
+row dimension ['time', 'product', 'store']: product
+column dimension ['time', 'store']: store
+region             North      South       West
+department                                    
+Baby Care       516035.0  1047422.0  1029845.0
+Bakery          798080.0  1509650.0  1493730.0
+Beverages       587822.0  1167747.0  1145983.0
+Dairy           722241.0  1473474.0  1331191.0
+Electronics     611750.0  1053076.0  1082970.0
+Frozen          609437.0  1140131.0  1182582.0
+Grocery        1002378.0  1948890.0  1974793.0
+Household       604339.0  1161817.0  1138932.0
+Meat & Fish     646272.0  1217861.0  1256241.0
+Personal Care   640448.0  1198169.0  1197649.0
+Produce         688609.0  1304564.0  1401142.0
+Snacks          604481.0  1163801.0  1096891.0
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 6
+row dimension ['time', 'product', 'store']: time
+column dimension ['product', 'store']: store
+region      North      South       West
+year                                   
+2025    4318752.0  8483454.0  8495998.0
+2026    3713141.0  6903148.0  6835950.0
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

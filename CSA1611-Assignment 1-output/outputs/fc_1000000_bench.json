@@ -1,0 +1,182 @@
+{
+ "queries": {
+  "Q1 net sales by region, category, quarter": {
+   "oltp": {
+    "time_s": 2.0071,
+    "vm_steps_k": 53036,
+    "rows": 1440,
+    "plan": [
+     "SCAN l",
+     "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH b USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH ci USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH st USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH r USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "star": {
+    "time_s": 1.4522,
+    "vm_steps_k": 26023,
+    "rows": 1440,
+    "plan": [
+     "SCAN f",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "star_idx": {
+    "time_s": 1.2613,
+    "vm_steps_k": 26023,
+    "rows": 1440,
+    "plan": [
+     "SCAN f USING COVERING INDEX ix_f_cover",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "agg": {
+    "time_s": 0.0079,
+    "vm_steps_k": 308,
+    "rows": 1440,
+    "plan": [
+     "SCAN agg_sales",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 15840
+   },
+   "totals_match": true
+  },
+  "Q2 weekend vs weekday net sales by department": {
+   "oltp": {
+    "time_s": 1.3793,
+    "vm_steps_k": 42181,
+    "rows": 24,
+    "plan": [
+     "SCAN l",
+     "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH b USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH dp USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "star": {
+    "time_s": 1.0484,
+    "vm_steps_k": 25360,
+    "rows": 24,
+    "plan": [
+     "SCAN f",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "star_idx": {
+    "time_s": 0.9595,
+    "vm_steps_k": 25360,
+    "rows": 24,
+    "plan": [
+     "SCAN f USING COVERING INDEX ix_f_cover",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 1000000
+   },
+   "agg": {
+    "time_s": 0.0045,
+    "vm_steps_k": 309,
+    "rows": 24,
+    "plan": [
+     "SCAN agg_sales",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 388119172.74,
+    "rows_scanned": 15840
+   },
+   "totals_match": true
+  },
+  "Q3 YTD (Jan-Oct) net sales by state, 2026 vs 2025": {
+   "oltp": {
+    "time_s": 0.9564,
+    "vm_steps_k": 36974,
+    "rows": 12,
+    "plan": [
+     "SCAN l",
+     "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH ci USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH st USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 352584967.3,
+    "rows_scanned": 1000000
+   },
+   "star": {
+    "time_s": 0.5333,
+    "vm_steps_k": 22258,
+    "rows": 12,
+    "plan": [
+     "SCAN f",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 352584967.3,
+    "rows_scanned": 1000000
+   },
+   "star_idx": {
+    "time_s": 0.3774,
+    "vm_steps_k": 22258,
+    "rows": 12,
+    "plan": [
+     "SCAN f USING COVERING INDEX ix_f_cover",
+     "SEARCH d USING INTEGER PRIMARY KEY (rowid=?)",
+     "SEARCH s USING INTEGER PRIMARY KEY (rowid=?)",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 352584967.3,
+    "rows_scanned": 1000000
+   },
+   "agg": {
+    "time_s": 0.0038,
+    "vm_steps_k": 264,
+    "rows": 12,
+    "plan": [
+     "SCAN agg_sales",
+     "USE TEMP B-TREE FOR GROUP BY"
+    ],
+    "total": 352584967.3,
+    "rows_scanned": 15840
+   },
+   "totals_match": true
+  }
+ },
+ "index_build_s": 1.84,
+ "index_mb": 81.06,
+ "agg_build_s": 2.44,
+ "agg_rows": 15840,
+ "agg_mb": 1.4,
+ "fact_rows": 1000000
+}

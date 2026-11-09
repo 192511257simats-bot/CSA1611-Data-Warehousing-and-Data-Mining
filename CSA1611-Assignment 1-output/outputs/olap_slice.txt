@@ -1,0 +1,25 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 4
+dimension ['time', 'product', 'store', 'customer']: store
+level ['region', 'state', 'city', 'store']: state
+value (one): Tamil Nadu
+
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('store', 'state', ['Tamil Nadu'])]
+ year    department region  net_sales  qty
+ 2025     Baby Care  South 286,761.15 1742
+ 2025        Bakery  South 423,740.88 2207
+ 2025     Beverages  South 299,480.72 1778
+ 2025         Dairy  South 372,846.74 2368
+ 2025   Electronics  South 284,216.13 1689
+ 2025        Frozen  South 309,009.19 1766
+ 2025       Grocery  South 517,251.62 3458
+ 2025     Household  South 307,628.81 1797
+ 2025   Meat & Fish  South 314,624.39 1721
+ 2025 Personal Care  South 325,054.77 1825
+[24 rows] grand total net_sales = 7,450,947.86
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

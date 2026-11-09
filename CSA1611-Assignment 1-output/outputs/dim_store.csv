@@ -1,0 +1,121 @@
+store_key,store_id,store_name,city,state,region
+1,1,Chennai-01,Chennai,Tamil Nadu,South
+2,2,Coimbatore-01,Coimbatore,Tamil Nadu,South
+3,3,Madurai-01,Madurai,Tamil Nadu,South
+4,4,Tam Town 3-01,Tam Town 3,Tamil Nadu,South
+5,5,Tam Town 4-01,Tam Town 4,Tamil Nadu,South
+6,6,Tam Town 5-01,Tam Town 5,Tamil Nadu,South
+7,7,Tam Town 6-01,Tam Town 6,Tamil Nadu,South
+8,8,Tam Town 7-01,Tam Town 7,Tamil Nadu,South
+9,9,Tam Town 8-01,Tam Town 8,Tamil Nadu,South
+10,10,Tam Town 9-01,Tam Town 9,Tamil Nadu,South
+11,11,Tam Town 10-01,Tam Town 10,Tamil Nadu,South
+12,12,Tam Town 11-01,Tam Town 11,Tamil Nadu,South
+13,13,Hyderabad-01,Hyderabad,Telangana,South
+14,14,Warangal-01,Warangal,Telangana,South
+15,15,Tel Town 2-01,Tel Town 2,Telangana,South
+16,16,Tel Town 3-01,Tel Town 3,Telangana,South
+17,17,Tel Town 4-01,Tel Town 4,Telangana,South
+18,18,Tel Town 5-01,Tel Town 5,Telangana,South
+19,19,Tel Town 6-01,Tel Town 6,Telangana,South
+20,20,Tel Town 7-01,Tel Town 7,Telangana,South
+21,21,Tel Town 8-01,Tel Town 8,Telangana,South
+22,22,Tel Town 9-01,Tel Town 9,Telangana,South
+23,23,Tel Town 10-01,Tel Town 10,Telangana,South
+24,24,Tel Town 11-01,Tel Town 11,Telangana,South
+25,25,Pune-01,Pune,Maharashtra,West
+26,26,Mumbai-01,Mumbai,Maharashtra,West
+27,27,Nagpur-01,Nagpur,Maharashtra,West
+28,28,Mah Town 3-01,Mah Town 3,Maharashtra,West
+29,29,Mah Town 4-01,Mah Town 4,Maharashtra,West
+30,30,Mah Town 5-01,Mah Town 5,Maharashtra,West
+31,31,Mah Town 6-01,Mah Town 6,Maharashtra,West
+32,32,Mah Town 7-01,Mah Town 7,Maharashtra,West
+33,33,Mah Town 8-01,Mah Town 8,Maharashtra,West
+34,34,Mah Town 9-01,Mah Town 9,Maharashtra,West
+35,35,Mah Town 10-01,Mah Town 10,Maharashtra,West
+36,36,Mah Town 11-01,Mah Town 11,Maharashtra,West
+37,37,Ahmedabad-01,Ahmedabad,Gujarat,West
+38,38,Surat-01,Surat,Gujarat,West
+39,39,Guj Town 2-01,Guj Town 2,Gujarat,West
+40,40,Guj Town 3-01,Guj Town 3,Gujarat,West
+41,41,Guj Town 4-01,Guj Town 4,Gujarat,West
+42,42,Guj Town 5-01,Guj Town 5,Gujarat,West
+43,43,Guj Town 6-01,Guj Town 6,Gujarat,West
+44,44,Guj Town 7-01,Guj Town 7,Gujarat,West
+45,45,Guj Town 8-01,Guj Town 8,Gujarat,West
+46,46,Guj Town 9-01,Guj Town 9,Gujarat,West
+47,47,Guj Town 10-01,Guj Town 10,Gujarat,West
+48,48,Guj Town 11-01,Guj Town 11,Gujarat,West
+49,49,New Delhi-01,New Delhi,Delhi,North
+50,50,Del Town 1-01,Del Town 1,Delhi,North
+51,51,Del Town 2-01,Del Town 2,Delhi,North
+52,52,Del Town 3-01,Del Town 3,Delhi,North
+53,53,Del Town 4-01,Del Town 4,Delhi,North
+54,54,Del Town 5-01,Del Town 5,Delhi,North
+55,55,Del Town 6-01,Del Town 6,Delhi,North
+56,56,Del Town 7-01,Del Town 7,Delhi,North
+57,57,Del Town 8-01,Del Town 8,Delhi,North
+58,58,Del Town 9-01,Del Town 9,Delhi,North
+59,59,Del Town 10-01,Del Town 10,Delhi,North
+60,60,Lucknow-01,Lucknow,Uttar Pradesh,North
+61,61,Kanpur-01,Kanpur,Uttar Pradesh,North
+62,62,Utt Town 2-01,Utt Town 2,Uttar Pradesh,North
+63,63,Utt Town 3-01,Utt Town 3,Uttar Pradesh,North
+64,64,Utt Town 4-01,Utt Town 4,Uttar Pradesh,North
+65,65,Utt Town 5-01,Utt Town 5,Uttar Pradesh,North
+66,66,Utt Town 6-01,Utt Town 6,Uttar Pradesh,North
+67,67,Utt Town 7-01,Utt Town 7,Uttar Pradesh,North
+68,68,Utt Town 8-01,Utt Town 8,Uttar Pradesh,North
+69,69,Utt Town 9-01,Utt Town 9,Uttar Pradesh,North
+70,70,Utt Town 10-01,Utt Town 10,Uttar Pradesh,North
+71,71,Chennai-02,Chennai,Tamil Nadu,South
+72,72,Coimbatore-02,Coimbatore,Tamil Nadu,South
+73,73,Madurai-02,Madurai,Tamil Nadu,South
+74,74,Tam Town 3-02,Tam Town 3,Tamil Nadu,South
+75,75,Tam Town 4-02,Tam Town 4,Tamil Nadu,South
+76,76,Tam Town 5-02,Tam Town 5,Tamil Nadu,South
+77,77,Tam Town 6-02,Tam Town 6,Tamil Nadu,South
+78,78,Tam Town 7-02,Tam Town 7,Tamil Nadu,South
+79,79,Tam Town 8-02,Tam Town 8,Tamil Nadu,South
+80,80,Tam Town 9-02,Tam Town 9,Tamil Nadu,South
+81,81,Tam Town 10-02,Tam Town 10,Tamil Nadu,South
+82,82,Tam Town 11-02,Tam Town 11,Tamil Nadu,South
+83,83,Hyderabad-02,Hyderabad,Telangana,South
+84,84,Warangal-02,Warangal,Telangana,South
+85,85,Tel Town 2-02,Tel Town 2,Telangana,South
+86,86,Tel Town 3-02,Tel Town 3,Telangana,South
+87,87,Tel Town 4-02,Tel Town 4,Telangana,South
+88,88,Tel Town 5-02,Tel Town 5,Telangana,South
+89,89,Tel Town 6-02,Tel Town 6,Telangana,South
+90,90,Tel Town 7-02,Tel Town 7,Telangana,South
+91,91,Tel Town 8-02,Tel Town 8,Telangana,South
+92,92,Tel Town 9-02,Tel Town 9,Telangana,South
+93,93,Tel Town 10-02,Tel Town 10,Telangana,South
+94,94,Tel Town 11-02,Tel Town 11,Telangana,South
+95,95,Pune-02,Pune,Maharashtra,West
+96,96,Mumbai-02,Mumbai,Maharashtra,West
+97,97,Nagpur-02,Nagpur,Maharashtra,West
+98,98,Mah Town 3-02,Mah Town 3,Maharashtra,West
+99,99,Mah Town 4-02,Mah Town 4,Maharashtra,West
+100,100,Mah Town 5-02,Mah Town 5,Maharashtra,West
+101,101,Mah Town 6-02,Mah Town 6,Maharashtra,West
+102,102,Mah Town 7-02,Mah Town 7,Maharashtra,West
+103,103,Mah Town 8-02,Mah Town 8,Maharashtra,West
+104,104,Mah Town 9-02,Mah Town 9,Maharashtra,West
+105,105,Mah Town 10-02,Mah Town 10,Maharashtra,West
+106,106,Mah Town 11-02,Mah Town 11,Maharashtra,West
+107,107,Ahmedabad-02,Ahmedabad,Gujarat,West
+108,108,Surat-02,Surat,Gujarat,West
+109,109,Guj Town 2-02,Guj Town 2,Gujarat,West
+110,110,Guj Town 3-02,Guj Town 3,Gujarat,West
+111,111,Guj Town 4-02,Guj Town 4,Gujarat,West
+112,112,Guj Town 5-02,Guj Town 5,Gujarat,West
+113,113,Guj Town 6-02,Guj Town 6,Gujarat,West
+114,114,Guj Town 7-02,Guj Town 7,Gujarat,West
+115,115,Guj Town 8-02,Guj Town 8,Gujarat,West
+116,116,Guj Town 9-02,Guj Town 9,Gujarat,West
+117,117,Guj Town 10-02,Guj Town 10,Gujarat,West
+118,118,Guj Town 11-02,Guj Town 11,Gujarat,West
+119,119,New Delhi-02,New Delhi,Delhi,North
+120,120,Del Town 1-02,Del Town 1,Delhi,North

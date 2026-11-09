@@ -1,0 +1,39 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 2
+dimension ['time', 'product', 'store', 'customer']: warehouse
+  invalid choice, try again
+dimension ['time', 'product', 'store', 'customer']: time
+  time: year -> ALL
+
+Cuboid: {'time': 'ALL', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+department region    net_sales  qty
+ Baby Care  North   516,034.94 3357
+ Baby Care  South 1,047,422.26 6316
+ Baby Care   West 1,029,844.71 6236
+    Bakery  North   798,079.85 4566
+    Bakery  South 1,509,649.82 8207
+    Bakery   West 1,493,729.55 8235
+ Beverages  North   587,821.97 3509
+ Beverages  South 1,167,746.87 7071
+ Beverages   West 1,145,983.24 7065
+     Dairy  North   722,241.14 4574
+[36 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 4
+dimension ['time', 'product', 'store', 'customer']: store
+level ['region', 'state', 'city', 'store']: state
+value (one): Atlantis
+
+Cuboid: {'time': 'ALL', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('store', 'state', ['Atlantis'])]
+Empty DataFrame
+Columns: [department, region, net_sales, qty]
+Index: []
+[0 rows] grand total net_sales = 0.00
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

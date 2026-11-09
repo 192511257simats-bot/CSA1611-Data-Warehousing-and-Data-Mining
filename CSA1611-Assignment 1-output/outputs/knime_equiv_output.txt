@@ -1,0 +1,10 @@
+CSV Reader   : fact rows = 100000
+Joiner       : joined rows = 100000 (must equal fact rows)
+Row Filter   : rows kept = 100000
+Pivoting     : net sales (INR) by region x quarter
+year_quarter    2025-Q1    2025-Q2    2025-Q3    2025-Q4    2026-Q1    2026-Q2    2026-Q3   2026-Q4
+region                                                                                             
+North         1126892.0  1064980.0  1053909.0  1072969.0  1025025.0  1152387.0  1142220.0  393510.0
+South         2181017.0  1976157.0  2167000.0  2159281.0  2107909.0  2069959.0  2118074.0  607206.0
+West          2141674.0  2129468.0  2178719.0  2046136.0  1884503.0  2078987.0  2111561.0  760899.0
+Reconciliation: pivot grand total = 38,750,442.00 | SUM(fact net_amount) = 38,750,442.10

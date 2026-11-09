@@ -1,0 +1,146 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+ year  department region  net_sales  qty
+ 2025   Baby Care  North 268,059.89 1833
+ 2025   Baby Care  South 561,588.25 3409
+ 2025   Baby Care   West 577,480.92 3447
+ 2025      Bakery  North 408,899.49 2440
+ 2025      Bakery  South 848,597.44 4588
+ 2025      Bakery   West 857,141.10 4646
+ 2025   Beverages  North 323,656.62 1931
+ 2025   Beverages  South 604,040.40 3752
+ 2025   Beverages   West 629,887.84 3830
+ 2025       Dairy  North 386,413.16 2523
+ 2025       Dairy  South 811,313.61 5048
+ 2025       Dairy   West 752,627.12 4810
+ 2025 Electronics  North 324,062.51 1906
+ 2025 Electronics  South 580,520.17 3484
+ 2025 Electronics   West 610,734.45 3597
+[72 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: dimension ['time', 'product', 'store', 'customer']:   time: year -> quarter
+
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_quarter  department region  net_sales  qty
+     2025-Q1   Baby Care  North  81,030.88  501
+     2025-Q1   Baby Care  South 159,566.14  882
+     2025-Q1   Baby Care   West 156,430.43  913
+     2025-Q1      Bakery  North 105,437.39  613
+     2025-Q1      Bakery  South 204,103.06 1092
+     2025-Q1      Bakery   West 218,672.16 1106
+     2025-Q1   Beverages  North  76,488.77  463
+     2025-Q1   Beverages  South 161,616.90  986
+     2025-Q1   Beverages   West 156,379.76  961
+     2025-Q1       Dairy  North 124,496.91  698
+     2025-Q1       Dairy  South 219,862.77 1339
+     2025-Q1       Dairy   West 181,849.82 1203
+     2025-Q1 Electronics  North  76,894.30  515
+     2025-Q1 Electronics  South 135,173.17  790
+     2025-Q1 Electronics   West 144,931.09  916
+[288 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: dimension ['time', 'product', 'store', 'customer']:   time: quarter -> month
+
+Cuboid: {'time': 'month', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_month  department region  net_sales  qty
+   2025-01   Baby Care  North  23,506.56  172
+   2025-01   Baby Care  South  47,516.82  307
+   2025-01   Baby Care   West  58,889.03  355
+   2025-01      Bakery  North  32,232.42  200
+   2025-01      Bakery  South  80,643.72  369
+   2025-01      Bakery   West  75,567.73  376
+   2025-01   Beverages  North  25,873.02  121
+   2025-01   Beverages  South  54,832.96  341
+   2025-01   Beverages   West  63,254.59  342
+   2025-01       Dairy  North  32,992.44  205
+   2025-01       Dairy  South  65,820.34  468
+   2025-01       Dairy   West  62,451.50  433
+   2025-01 Electronics  North  17,669.74  130
+   2025-01 Electronics  South  51,169.43  300
+   2025-01 Electronics   West  60,027.69  331
+[792 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: dimension ['time', 'product', 'store', 'customer']:   time: month -> quarter
+
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_quarter  department region  net_sales  qty
+     2025-Q1   Baby Care  North  81,030.88  501
+     2025-Q1   Baby Care  South 159,566.14  882
+     2025-Q1   Baby Care   West 156,430.43  913
+     2025-Q1      Bakery  North 105,437.39  613
+     2025-Q1      Bakery  South 204,103.06 1092
+     2025-Q1      Bakery   West 218,672.16 1106
+     2025-Q1   Beverages  North  76,488.77  463
+     2025-Q1   Beverages  South 161,616.90  986
+     2025-Q1   Beverages   West 156,379.76  961
+     2025-Q1       Dairy  North 124,496.91  698
+     2025-Q1       Dairy  South 219,862.77 1339
+     2025-Q1       Dairy   West 181,849.82 1203
+     2025-Q1 Electronics  North  76,894.30  515
+     2025-Q1 Electronics  South 135,173.17  790
+     2025-Q1 Electronics   West 144,931.09  916
+[288 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: dimension ['time', 'product', 'store', 'customer']: level ['region', 'state', 'city', 'store']: value (one): 
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('store', 'state', ['Tamil Nadu'])]
+year_quarter    department region  net_sales  qty
+     2025-Q1     Baby Care  South  67,179.69  411
+     2025-Q1        Bakery  South 113,795.59  567
+     2025-Q1     Beverages  South  87,444.26  488
+     2025-Q1         Dairy  South  97,651.81  592
+     2025-Q1   Electronics  South  75,412.78  404
+     2025-Q1        Frozen  South  80,386.44  427
+     2025-Q1       Grocery  South 120,796.44  794
+     2025-Q1     Household  South  86,617.12  539
+     2025-Q1   Meat & Fish  South  76,880.91  452
+     2025-Q1 Personal Care  South  91,532.64  495
+     2025-Q1       Produce  South  99,939.83  575
+     2025-Q1        Snacks  South  74,333.32  465
+     2025-Q2     Baby Care  South  69,477.46  424
+     2025-Q2        Bakery  South  89,772.68  476
+     2025-Q2     Beverages  South  77,457.24  482
+[96 rows] grand total net_sales = 7,450,947.86
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: dimension ['time', 'product', 'store', 'customer']: level ['department', 'category', 'product']: values (comma separated): 
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('store', 'state', ['Tamil Nadu']), ('product', 'department', ['Dairy', 'Bakery'])]
+year_quarter department region  net_sales  qty
+     2025-Q1     Bakery  South 113,795.59  567
+     2025-Q1      Dairy  South  97,651.81  592
+     2025-Q2     Bakery  South  89,772.68  476
+     2025-Q2      Dairy  South  72,769.95  531
+     2025-Q3     Bakery  South 116,630.47  625
+     2025-Q3      Dairy  South 108,895.71  642
+     2025-Q4     Bakery  South 103,542.14  539
+     2025-Q4      Dairy  South  93,529.27  603
+     2026-Q1     Bakery  South  96,648.98  498
+     2026-Q1      Dairy  South  90,434.02  580
+     2026-Q2     Bakery  South 102,447.63  544
+     2026-Q2      Dairy  South  94,277.13  583
+     2026-Q3     Bakery  South 103,895.56  593
+     2026-Q3      Dairy  South 109,617.74  688
+     2026-Q4     Bakery  South  23,814.89  141
+[16 rows] grand total net_sales = 1,437,830.54
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: row dimension ['time', 'product', 'store']: column dimension ['time', 'store']: year_quarter   2025-Q1  2025-Q2   2025-Q3   2025-Q4  2026-Q1   2026-Q2   2026-Q3  2026-Q4
+department                                                                               
+Bakery        113796.0  89773.0  116630.0  103542.0  96649.0  102448.0  103896.0  23815.0
+Dairy          97652.0  72770.0  108896.0   93529.0  90434.0   94277.0  109618.0  20107.0
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 

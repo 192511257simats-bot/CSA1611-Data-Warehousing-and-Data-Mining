@@ -1,0 +1,9 @@
+cuboids with hierarchies: 160 | without hierarchies: 16
+base cuboid (day, product, store, segment) rows ~ 1000000 | apex cuboid (ALL, ALL, ALL, ALL) rows = 1
+total query cost with only base cuboid: 160,000,000
+pick 1: (month, department, store, segment)                  size~  126,720  benefit     55,889,920
+pick 2: (month, category, state, segment)                    size~   31,680  benefit     18,534,400
+pick 3: (quarter, category, store, segment)                  size~  230,400  benefit      9,235,200
+pick 4: (day, department, state, segment)                    size~  192,672  benefit      6,458,624
+pick 5: (day, ALL, store, segment)                           size~  321,120  benefit      2,715,520
+cost after 5 picks: 67,166,336 (-58.0%) | materialised fraction of lattice: 5/160 = 3.1%

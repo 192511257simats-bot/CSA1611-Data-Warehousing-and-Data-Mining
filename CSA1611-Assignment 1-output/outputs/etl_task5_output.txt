@@ -1,0 +1,32 @@
+=== BEFORE (raw extract) ===
+ order_id     customer      store           product qty unit_price order_date
+     1001 Rajesh Kumar Chennai-04  Basmati Rice 5kg   2     620.00 03/11/2026
+     1002     R. Kumar chennai-04 Basmati rice 5 kg   1     620.00 2026-11-03
+     1003 Anita Joseph    Pune-11      Olive Oil 1L  -3     780.00  04-Nov-26
+     1004      Meena S        NaN          Tea 250g   4      95.50 04/11/2026
+     1005 Anita Joseph    Pune-11      Olive Oil 1L   3 9.40 (USD) 04/11/2026
+     1006   Vikram Rao     Hyd-02               NaN   1      1,250 05/11/2026
+
+=== AFTER (conformed rows loaded to fact_sales) ===
+ order_id  customer_key        store  product_key          product  qty  unit_price  net_amount order_date                                                   dq_flags
+     1001           501   Chennai-04         9001 Basmati Rice 5kg    2       620.0      1240.0 2026-11-03                                                           
+     1002           501   Chennai-04         9001 Basmati Rice 5kg    1       620.0       620.0 2026-11-03                                                fuzzy-match
+     1004           503      Unknown         9003         Tea 250g    4        95.5       382.0 2026-11-04                               null store -> Unknown member
+     1005           502      Pune-11         9002     Olive Oil 1L    3       780.2      2340.6 2026-11-04                                       USD converted @ 83.0
+     1006           504 Hyderabad-02           -1          Unknown    1      1250.0      1250.0 2026-11-05 null product -> Unknown member; thousand separator removed
+
+=== REJECTED ===
+ order_id                                                  reason
+     1003 qty <= 0 (possible return) -> route to Returns pipeline
+
+=== AUDIT === extracted=6 loaded=5 rejected=1 balanced=True
+control total (raw qty*price, valid rows) vs loaded net: 5,832.60
+
+=== SCD Type 1 (original design: overwrite, no history) ===
+ customer_key  customer_id city   tier
+            1          501 Pune Silver
+
+=== SCD Type 2 (Day-4 redesign: new row, history kept) ===
+ customer_key  customer_id    city   tier valid_from   valid_to  current
+            1          501 Chennai Silver 2025-01-01 2026-11-05        0
+            2          501    Pune Silver 2026-11-05 9999-12-31        1

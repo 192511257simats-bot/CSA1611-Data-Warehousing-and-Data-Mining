@@ -1,0 +1,64 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 3
+dimension ['time', 'product', 'store', 'customer']: time
+  time: year -> quarter
+
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_quarter department region  net_sales  qty
+     2025-Q1  Baby Care  North  81,030.88  501
+     2025-Q1  Baby Care  South 159,566.14  882
+     2025-Q1  Baby Care   West 156,430.43  913
+     2025-Q1     Bakery  North 105,437.39  613
+     2025-Q1     Bakery  South 204,103.06 1092
+     2025-Q1     Bakery   West 218,672.16 1106
+     2025-Q1  Beverages  North  76,488.77  463
+     2025-Q1  Beverages  South 161,616.90  986
+     2025-Q1  Beverages   West 156,379.76  961
+     2025-Q1      Dairy  North 124,496.91  698
+[288 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 3
+dimension ['time', 'product', 'store', 'customer']: time
+  time: quarter -> month
+
+Cuboid: {'time': 'month', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_month department region  net_sales  qty
+   2025-01  Baby Care  North  23,506.56  172
+   2025-01  Baby Care  South  47,516.82  307
+   2025-01  Baby Care   West  58,889.03  355
+   2025-01     Bakery  North  32,232.42  200
+   2025-01     Bakery  South  80,643.72  369
+   2025-01     Bakery   West  75,567.73  376
+   2025-01  Beverages  North  25,873.02  121
+   2025-01  Beverages  South  54,832.96  341
+   2025-01  Beverages   West  63,254.59  342
+   2025-01      Dairy  North  32,992.44  205
+[792 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 2
+dimension ['time', 'product', 'store', 'customer']: time
+  time: month -> quarter
+
+Cuboid: {'time': 'quarter', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: none
+year_quarter department region  net_sales  qty
+     2025-Q1  Baby Care  North  81,030.88  501
+     2025-Q1  Baby Care  South 159,566.14  882
+     2025-Q1  Baby Care   West 156,430.43  913
+     2025-Q1     Bakery  North 105,437.39  613
+     2025-Q1     Bakery  South 204,103.06 1092
+     2025-Q1     Bakery   West 218,672.16 1106
+     2025-Q1  Beverages  North  76,488.77  463
+     2025-Q1  Beverages  South 161,616.90  986
+     2025-Q1  Beverages   West 156,379.76  961
+     2025-Q1      Dairy  North 124,496.91  698
+[288 rows] grand total net_sales = 38,750,442.10
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

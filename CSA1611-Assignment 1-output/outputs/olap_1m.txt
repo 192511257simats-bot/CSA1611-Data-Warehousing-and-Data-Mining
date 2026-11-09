@@ -1,0 +1,52 @@
+FreshCart OLAP - fc_1000000.db: 1,000,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 4
+dimension ['time', 'product', 'store', 'customer']: time
+level ['year', 'quarter', 'month', 'day']: year
+value (one): 2026
+
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('time', 'year', [2026])]
+ year department region    net_sales   qty
+ 2026  Baby Care  North 2,351,337.37 14244
+ 2026  Baby Care  South 4,873,843.03 28991
+ 2026  Baby Care   West 4,677,292.79 29159
+ 2026     Bakery  North 3,362,861.05 18577
+ 2026     Bakery  South 6,813,616.08 37239
+ 2026     Bakery   West 6,881,004.32 37810
+ 2026  Beverages  North 2,796,857.11 16680
+ 2026  Beverages  South 5,341,064.79 32077
+ 2026  Beverages   West 5,265,363.46 32350
+ 2026      Dairy  North 3,237,111.82 20608
+[36 rows] grand total net_sales = 176,417,345.40
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 5
+dimension ['time', 'product', 'store', 'customer']: product
+level ['department', 'category', 'product']: department
+values (comma separated): Dairy,Bakery
+
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('time', 'year', [2026]), ('product', 'department', ['Dairy', 'Bakery'])]
+ year department region    net_sales   qty
+ 2026     Bakery  North 3,362,861.05 18577
+ 2026     Bakery  South 6,813,616.08 37239
+ 2026     Bakery   West 6,881,004.32 37810
+ 2026      Dairy  North 3,237,111.82 20608
+ 2026      Dairy  South 6,446,744.18 40772
+ 2026      Dairy   West 6,380,419.79 41098
+[6 rows] grand total net_sales = 33,121,757.24
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 6
+row dimension ['time', 'product', 'store']: product
+column dimension ['time', 'store']: store
+region          North      South       West
+department                                 
+Bakery      3362861.0  6813616.0  6881004.0
+Dairy       3237112.0  6446744.0  6380420.0
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0

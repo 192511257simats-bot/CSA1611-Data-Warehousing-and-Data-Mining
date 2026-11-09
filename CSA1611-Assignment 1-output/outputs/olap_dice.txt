@@ -1,0 +1,44 @@
+FreshCart OLAP - fc_100000.db: 100,000 fact rows
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 5
+dimension ['time', 'product', 'store', 'customer']: product
+level ['department', 'category', 'product']: department
+values (comma separated): Dairy,Bakery
+
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('product', 'department', ['Dairy', 'Bakery'])]
+ year department region  net_sales  qty
+ 2025     Bakery  North 408,899.49 2440
+ 2025     Bakery  South 848,597.44 4588
+ 2025     Bakery   West 857,141.10 4646
+ 2025      Dairy  North 386,413.16 2523
+ 2025      Dairy  South 811,313.61 5048
+ 2025      Dairy   West 752,627.12 4810
+ 2026     Bakery  North 389,180.36 2126
+ 2026     Bakery  South 661,052.38 3619
+ 2026     Bakery   West 636,588.45 3589
+ 2026      Dairy  North 335,827.98 2051
+[12 rows] grand total net_sales = 7,328,365.30
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 5
+dimension ['time', 'product', 'store', 'customer']: store
+level ['region', 'state', 'city', 'store']: region
+values (comma separated): South,West
+
+Cuboid: {'time': 'year', 'product': 'department', 'store': 'region', 'customer': 'ALL'} | filters: [('product', 'department', ['Dairy', 'Bakery']), ('store', 'region', ['South', 'West'])]
+ year department region  net_sales  qty
+ 2025     Bakery  South 848,597.44 4588
+ 2025     Bakery   West 857,141.10 4646
+ 2025      Dairy  South 811,313.61 5048
+ 2025      Dairy   West 752,627.12 4810
+ 2026     Bakery  South 661,052.38 3619
+ 2026     Bakery   West 636,588.45 3589
+ 2026      Dairy  South 662,160.03 4056
+ 2026      Dairy   West 578,564.18 3864
+[8 rows] grand total net_sales = 5,808,044.31
+RECONCILIATION with OLTP source: PASS
+
+1 Show  2 Roll-up  3 Drill-down  4 Slice  5 Dice  6 Pivot  7 Reset  0 Quit
+operation: 0
