@@ -1,0 +1,34 @@
+=== Student A: analytical validation (1,000 patients, 6% readmitted = 60 positives, 940 negatives) ===
+Bayes-optimal rule: flag if P(readmit) >= C_FP/(C_FP+C_FN) = 1/11 = 0.091
+T=0.50 (default)       TP=18 FN=42 FP=8 TN=932 | acc=0.950 recall=0.30 precision=0.69 | cost = 10x42 + 1x8 = 428
+T=0.09 (cost-based)    TP=45 FN=15 FP=230 TN=710 | acc=0.755 recall=0.75 precision=0.16 | cost = 10x15 + 1x230 = 380
+Flag-nobody: accuracy=0.940, cost = 10x60 = 600 ; flag-everybody: accuracy=0.060, cost = 940
+
+=== Student B: experimental validation on a synthetic readmission-like data set ===
+rows=8000  readmission rate=6.425%  missing: lab_creat 11%, lab_sodium 12%, n_meds 12%
+
+model                                                            thr  recall   prec    AUC   cost
+Baseline: decision tree, depth 6, no cost handling              0.50   0.027  0.200  0.653   5056
+Baseline: decision tree, depth 6, no cost handling              0.09   0.335  0.133  0.653   4539
+Logistic regression, no imbalance handling                      0.50   0.006  0.375  0.735   5115
+Logistic regression, no imbalance handling                      0.09   0.510  0.160  0.735   3891
+FINAL: cost-sensitive logistic regression (class_weight 10:1)   0.50   0.512  0.159  0.733   3901
+Cost-sensitive shallow tree (depth 3, class_weight 10:1)        0.50   0.350  0.129  0.631   4555
+Flag nobody (accuracy 0.936)                                       -   0.000      -  0.500   5140
+
+Imbalance handling inside the 10 folds (logistic regression, threshold 0.5 and cost-based 0.091)
+  none                                : thr 0.500: recall 0.006 prec 0.375 cost 5115 | thr 0.091: recall 0.510 prec 0.160 cost 3891
+  class weight 10:1                   : thr 0.500: recall 0.512 prec 0.159 cost 3901
+  random oversampling x10 (odds x10)  : thr 0.500: recall 0.506 prec 0.157 cost 3931
+
+Cost-minimising threshold on CV probabilities of plain logistic regression: 0.10 (cost 3890); theory 1/11 = 0.091
+
+Final model - standardised coefficients (odds-ratio per 1 SD) for the doctor-facing explanation:
+  num__prior_adm               coef +0.499  odds x1.65
+  cat__diag_group_diabetes     coef -0.455  odds x0.63
+  cat__diag_group_other        coef -0.443  odds x0.64
+  num__age                     coef +0.403  odds x1.50
+  cat__diag_group_ortho        coef -0.360  odds x0.70
+  cat__diag_group_cardiac      coef +0.337  odds x1.40
+  num__lab_creat               coef +0.335  odds x1.40
+  num__los_days                coef +0.324  odds x1.38

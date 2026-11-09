@@ -1,0 +1,49 @@
+=== Student A: rules from the Q1 tree, coverage and accuracy on the 12 tuples ===
+Rule Condition                                                    Class  Cover   Cov%    Acc
+R1   Credit=Good AND Employment=Salaried                          Yes     3/12  25.0%    3/3
+R2   Credit=Good AND Employment=Self-employed AND Income=High     Yes     1/12   8.3%    1/1
+R3   Credit=Good AND Employment=Self-employed AND Income=Low      No      1/12   8.3%    1/1
+R4   Credit=Good AND Employment=Self-employed AND Income=Medium   No      1/12   8.3%    1/1
+R5   Credit=Poor AND Income=High AND Employment=Salaried          No      1/12   8.3%    1/1
+R6   Credit=Poor AND Income=High AND Employment=Self-employed     Yes     1/12   8.3%    1/1
+R7   Credit=Poor AND Income=Low                                   No      2/12  16.7%    2/2
+R8   Credit=Poor AND Income=Medium                                No      2/12  16.7%    2/2
+
+=== Sequential covering (learn one rule, remove covered tuples, repeat) for class Yes ===
+Rule 1: IF Credit=Good AND Employment=Salaried THEN Yes | covers tuples [1, 4, 8] (3 Yes, 0 No)
+   tuples left after removal: [2, 3, 5, 6, 7, 9, 10, 11, 12]
+Rule 2: IF Income=High AND Employment=Self-employed THEN Yes | covers tuples [3, 12] (2 Yes, 0 No)
+   tuples left after removal: [2, 5, 6, 7, 9, 10, 11]
+
+=== Student B: class-association rules (min support 25%, min confidence 70%) -> Approved=Yes ===
+Rule                                                       sup   conf
+Income=High                                   => Yes   3/12=25.0%  75.0%
+Credit=Good AND Employment=Salaried           => Yes   3/12=25.0% 100.0%
+
+=== Rule conflict example: all rules with 1-2 conditions, confidence >= 60%, either class ===
+Tuple 6 ('Medium', 'Good', 'Self-employed') actual=No: 5 rules fire
+   2 cond  Income=Medium AND Employment=Self-employed => No  conf=1.00 sup=0.17
+   2 cond  Credit=Good AND Employment=Self-employed => No  conf=0.67 sup=0.17
+   1 cond  Income=Medium                          => No  conf=0.75 sup=0.25
+   1 cond  Credit=Good                            => Yes conf=0.67 sup=0.33
+   1 cond  Employment=Self-employed               => No  conf=0.67 sup=0.33
+Tuple 11 ('Low', 'Good', 'Self-employed') actual=No: 5 rules fire
+   2 cond  Income=Low AND Employment=Self-employed => No  conf=1.00 sup=0.17
+   2 cond  Credit=Good AND Employment=Self-employed => No  conf=0.67 sup=0.17
+   1 cond  Income=Low                             => No  conf=0.75 sup=0.25
+   1 cond  Credit=Good                            => Yes conf=0.67 sup=0.33
+   1 cond  Employment=Self-employed               => No  conf=0.67 sup=0.33
+
+=== credit_synth: J48-style tree rules vs sequential-covering (JRip-like) rules ===
+Tree (J48-like): 57 leaf-rules, test acc 0.793
+Learned rules (class=1, minority) - default rule: class=0
+  IF f2_lo AND f15_lo AND f6_mid THEN 1
+  IF f7_lo AND f6_lo AND f16_lo THEN 1
+  IF f10_mid AND f12_hi AND f7_lo THEN 1
+  IF f19_lo AND f6_mid AND f14_hi THEN 1
+  IF f20_hi AND f6_hi AND f18_hi THEN 1
+  IF f10_mid AND f15_lo AND f5_mid THEN 1
+  IF f19_lo AND f6_mid AND f20_mid THEN 1
+  IF f16_mid AND f11_lo AND f18_mid THEN 1
+  IF f20_hi AND f2_mid AND f18_lo THEN 1
+Rule list: 9 rules + default, test acc 0.753, recall(class 1) 0.489

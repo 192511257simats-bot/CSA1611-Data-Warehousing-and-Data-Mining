@@ -1,0 +1,96 @@
+=== Student A: manual induction ===
+Class counts: {'No': 7, 'Yes': 5} -> Entropy(D) = 0.9799
+
+Attribute Income
+   High           n=4 yes=3 no=1 H=0.8113
+   Low            n=4 yes=1 no=3 H=0.8113
+   Medium         n=4 yes=1 no=3 H=0.8113
+   Gain(Income) = 0.1686
+
+Attribute Credit
+   Good           n=6 yes=4 no=2 H=0.9183
+   Poor           n=6 yes=1 no=5 H=0.6500
+   Gain(Credit) = 0.1957
+
+Attribute Employment
+   Salaried       n=6 yes=3 no=3 H=1.0000
+   Self-employed  n=6 yes=2 no=4 H=0.9183
+   Gain(Employment) = 0.0207
+
+Income: SplitInfo = 1.5850, GainRatio = 0.1064
+Gini(D)=0.4861  Gini reduction(Income)=0.1111
+  Income      GainRatio=0.1064  GiniReduction=0.1111
+  Credit      GainRatio=0.1957  GiniReduction=0.1250
+  Employment  GainRatio=0.0207  GiniReduction=0.0139
+
+ID3 tree: {'Credit': {'Good': {'Employment': {'Salaried': 'Yes', 'Self-employed': {'Income': {'High': 'Yes', 'Low': 'No', 'Medium': 'No'}}}}, 'Poor': {'Income': {'High': {'Employment': {'Salaried': 'No', 'Self-employed': 'Yes'}}, 'Low': 'No', 'Medium': 'No'}}}}
+
+Paths:
+  IF Credit=Good AND Employment=Salaried THEN Approved = Yes
+  IF Credit=Good AND Employment=Self-employed AND Income=High THEN Approved = Yes
+  IF Credit=Good AND Employment=Self-employed AND Income=Low THEN Approved = No
+  IF Credit=Good AND Employment=Self-employed AND Income=Medium THEN Approved = No
+  IF Credit=Poor AND Income=High AND Employment=Salaried THEN Approved = No
+  IF Credit=Poor AND Income=High AND Employment=Self-employed THEN Approved = Yes
+  IF Credit=Poor AND Income=Low THEN Approved = No
+  IF Credit=Poor AND Income=Medium THEN Approved = No
+
+Gain(CustomerID) = 0.9799  (SplitInfo = 3.5850, GainRatio = 0.2733)
+
+=== Student B: Weka J48-equivalent (sklearn DecisionTreeClassifier, entropy) ===
+
+min_samples_leaf=1: leaves=6 train acc=1.000
+|--- Credit_Poor <= 0.50
+|   |--- Employment_Self-employed <= 0.50
+|   |   |--- class: Yes
+|   |--- Employment_Self-employed >  0.50
+|   |   |--- Income_High <= 0.50
+|   |   |   |--- class: No
+|   |   |--- Income_High >  0.50
+|   |   |   |--- class: Yes
+|--- Credit_Poor >  0.50
+|   |--- Income_High <= 0.50
+|   |   |--- class: No
+|   |--- Income_High >  0.50
+|   |   |--- Employment_Salaried <= 0.50
+|   |   |   |--- class: Yes
+|   |   |--- Employment_Salaried >  0.50
+|   |   |   |--- class: No
+
+
+min_samples_leaf=2: leaves=4 train acc=0.833
+|--- Credit_Poor <= 0.50
+|   |--- Employment_Self-employed <= 0.50
+|   |   |--- class: Yes
+|   |--- Employment_Self-employed >  0.50
+|   |   |--- class: No
+|--- Credit_Poor >  0.50
+|   |--- Income_High <= 0.50
+|   |   |--- class: No
+|   |--- Income_High >  0.50
+|   |   |--- class: No
+
+
+=== Larger data: credit_synth (1000 x 20, 70/30), stratified 70/30 hold-out ===
+Pruning (ccp_alpha = analogue of J48 confidence factor -C; larger alpha = more pruning)
+ ccp_alpha  leaves  depth   train    test
+         0      77     16   1.000   0.747
+     0.001      77     16   1.000   0.747
+     0.003      75     16   0.997   0.747
+     0.006      68     15   0.986   0.753
+      0.01      38     13   0.936   0.777
+      0.02      13      7   0.827   0.753
+      0.05       2      1   0.734   0.727
+
+Minimum instances per leaf (J48 -M)
+   minLeaf  leaves  depth   train    test
+         1      77     16   1.000   0.747
+         2      73     15   0.984   0.757
+         5      57     14   0.939   0.793
+        10      40     12   0.876   0.747
+        20      23      9   0.827   0.750
+        40      15      7   0.800   0.760
+
+Overfitting evidence: depth=20 train=1.000 test=0.747 ; best test depth=5 (0.767)
+Real data (breast cancer, 569x30) 10-fold CV, min_samples_leaf=2: 0.926
+Real data (breast cancer, 569x30) 10-fold CV, min_samples_leaf=10: 0.940

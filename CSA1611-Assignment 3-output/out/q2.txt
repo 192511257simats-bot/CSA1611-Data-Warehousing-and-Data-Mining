@@ -1,0 +1,33 @@
+=== Student A: X = (Income=Low, Credit=Good, Employment=Self-employed) ===
+  No : P(No)=7/12  P(Low|No)=3/7  P(Good|No)=2/7  P(Self-employed|No)=4/7
+       posterior ~ 0.04082
+  Yes: P(Yes)=5/12  P(Low|Yes)=1/5  P(Good|Yes)=4/5  P(Self-employed|Yes)=2/5
+       posterior ~ 0.02667
+  normalised: {'No': 0.6048, 'Yes': 0.3952} -> predict No
+
+Zero-probability demo: remove tuple 12 (only 'Yes' with Poor credit) and classify X2=(Low, Poor, Self-employed)
+ Without correction:
+  No : P(No)=7/11  P(Low|No)=3/7  P(Poor|No)=5/7  P(Self-employed|No)=4/7
+       posterior ~ 0.11132
+  Yes: P(Yes)=4/11  P(Low|Yes)=1/4  P(Poor|Yes)=0  P(Self-employed|Yes)=1/4
+       posterior ~ 0.00000
+  normalised: {'No': 1.0, 'Yes': 0.0} -> predict No
+ With Laplace correction (k=1):
+  No : P(No)=7/11  P(Low|No)=2/5  P(Poor|No)=2/3  P(Self-employed|No)=5/9
+       posterior ~ 0.09428
+  Yes: P(Yes)=4/11  P(Low|Yes)=2/7  P(Poor|Yes)=1/6  P(Self-employed|Yes)=1/3
+       posterior ~ 0.00577
+  normalised: {'No': 0.9423, 'Yes': 0.0577} -> predict No
+
+=== Student B: Weka NaiveBayes-equivalent check (sklearn CategoricalNB) ===
+classes ['No' 'Yes']  priors [0.5833 0.4167]
+P(class | X) by sklearn: [0.6048 0.3952] (manual: No 0.6048, Yes 0.3952)
+with alpha=1 (Laplace): [0.5754 0.4246]
+
+=== Correlated attributes: Naive Bayes vs decision tree (n=3000, 6 informative Gaussian attributes) ===
+ copies of f1   NB acc   NB AUC  NB logloss   DT acc   DT AUC
+            0    0.714    0.777       0.566    0.626    0.669
+            1    0.705    0.768       0.582    0.628    0.673
+            2    0.686    0.750       0.626    0.628    0.667
+            4    0.663    0.718       0.771    0.625    0.670
+            8    0.630    0.683       1.175    0.628    0.668
