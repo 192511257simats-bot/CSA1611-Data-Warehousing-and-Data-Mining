@@ -1,0 +1,27 @@
+=== PART A: replace exact GPS by grid-cell centre (privacy), re-run DBSCAN (MinPts=10) ===
+ cell size |  eps used | clusters | noise | ARI vs truth | ARI vs original DBSCAN
+ exact GPS |   0.286km |   3      |  190  |   0.975      |   1.000
+     100 m |   0.286km |     3    |  190  |   0.975      |   0.997
+     250 m |   0.286km |     3    |  188  |   0.975      |   0.997
+     250 m |   0.375km |     3    |  183  |   0.973      |   0.989
+     500 m |   0.286km |    42    |  302  |   0.157      |   0.153
+     500 m |   0.750km |     2    |  139  |   0.557      |   0.569
+    1000 m |   0.286km |    22    |  220  |   0.265      |   0.262
+    1000 m |   1.500km |     1    |    6  |   0.003      |   0.003
+    2000 m |   0.286km |    15    |  127  |   0.328      |   0.331
+    2000 m |   3.000km |     1    |    0  |   0.000      |   0.000
+
+=== PART B: multilingual complaints ===
+Sample Hindi: पास गड्ढा स्कूल सिग्नल यातायात | Roads
+Sample Tamil: அவசரம் போக்குவரத்து சிக்னல் சாலை வார்டு | Roads
+Tokeniser check on Tamil word அவசரம் -> default regex \w\w+ gives ['அவசரம'] (word is broken: vowel signs are not \w)  vs whitespace tokeniser -> ['அவசரம்']
+
+[NaiveBayes] (1) English-only model, |V|=30: acc English=1.000  Hindi=0.200  Tamil=0.200
+[NaiveBayes] (2) Trilingual model trained on all three, |V|=90: acc English=1.000  Hindi=1.000  Tamil=1.000
+[NaiveBayes] (3) Pivot-to-English (dictionary stands in for machine translation): acc Hindi=1.000  Tamil=1.000
+
+[LinearSVM] (1) English-only model, |V|=30: acc English=1.000  Hindi=0.200  Tamil=0.200
+[LinearSVM] (2) Trilingual model trained on all three, |V|=90: acc English=1.000  Hindi=1.000  Tamil=1.000
+[LinearSVM] (3) Pivot-to-English (dictionary stands in for machine translation): acc Hindi=1.000  Tamil=1.000
+
+Throughput: vectorise+classify 20,000 complaints in 0.05 s (single core)

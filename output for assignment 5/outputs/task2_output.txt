@@ -1,0 +1,71 @@
+Corpus: 600 synthetic complaints, 5 classes ['Roads', 'Water', 'Sanitation', 'Electricity', 'Health'], seed=42
+Sample: for please of road bridge crack urgently act the | Roads
+
+=== Feature-setting comparison (70/30 stratified split; 5-fold CV on train in brackets) ===
+Setting                                        |V|          NaiveBayes           LinearSVM
+F1 binary, no stop, no stem, all vocab          93    0.983 ( 0.986)    0.989 ( 0.979)
+F2 TF-IDF, stop-words removed, no stem          77    0.983 ( 0.986)    0.983 ( 0.983)
+F3 TF-IDF, stop removed + stemming              70    0.983 ( 0.986)    0.983 ( 0.986)
+F4 as F3 but vocabulary limited to 40           40    0.750 ( 0.786)    0.800 ( 0.790)
+
+=== NaiveBayes with F3 TF-IDF, stop removed + stemming : accuracy = 0.983 ===
+Confusion matrix (rows=true, cols=predicted): ['Roads', 'Water', 'Sanitation', 'Electricity', 'Health']
+[[35  0  1  0  0]
+ [ 0 35  0  0  1]
+ [ 0  0 35  0  1]
+ [ 0  0  0 36  0]
+ [ 0  0  0  0 36]]
+              precision    recall  f1-score   support
+
+       Roads      1.000     0.972     0.986        36
+       Water      1.000     0.972     0.986        36
+  Sanitation      0.972     0.972     0.972        36
+ Electricity      1.000     1.000     1.000        36
+      Health      0.947     1.000     0.973        36
+
+    accuracy                          0.983       180
+   macro avg      0.984     0.983     0.983       180
+weighted avg      0.984     0.983     0.983       180
+
+
+=== LinearSVM with F3 TF-IDF, stop removed + stemming : accuracy = 0.983 ===
+Confusion matrix (rows=true, cols=predicted): ['Roads', 'Water', 'Sanitation', 'Electricity', 'Health']
+[[35  0  1  0  0]
+ [ 0 35  0  0  1]
+ [ 0  0 35  0  1]
+ [ 0  0  0 36  0]
+ [ 0  0  0  0 36]]
+              precision    recall  f1-score   support
+
+       Roads      1.000     0.972     0.986        36
+       Water      1.000     0.972     0.986        36
+  Sanitation      0.972     0.972     0.972        36
+ Electricity      1.000     1.000     1.000        36
+      Health      0.947     1.000     0.973        36
+
+    accuracy                          0.983       180
+   macro avg      0.984     0.983     0.983       180
+weighted avg      0.984     0.983     0.983       180
+
+--- Misclassified test documents (3) ---
+true=Roads       pred=Sanitation  | stop diversion are traffic the toilet near a sewage bus
+      category-words present: {'Roads': ['diversion', 'traffic'], 'Sanitation': ['sewage', 'toilet']}
+true=Water       pred=Health      | leak mosquito since a last tank are hospital the week
+      category-words present: {'Water': ['leak', 'tank'], 'Health': ['hospital', 'mosquito']}
+true=Sanitation  pred=Health      | ambulance since has clinic week drain a last waste for
+      category-words present: {'Sanitation': ['drain', 'waste'], 'Health': ['ambulance', 'clinic']}
+
+=== k-means (k=5) on TF-IDF (labels ignored while clustering) ===
+true category  Electricity  Health  Roads  Sanitation  Water
+cluster                                                     
+0                      106       1    104           0      0
+1                       12       8     15           5     12
+2                        1       0      1         114      0
+3                        0     111      0           1      1
+4                        1       0      0           0    107
+Purity=0.755  ARI=0.687  NMI=0.750
+cluster 0 top terms: ['meter', 'road', 'pole', 'outage', 'footpath']
+cluster 1 top terms: ['please', 'urgently', 'act', 'hospital', 'footpath']
+cluster 2 top terms: ['toilet', 'sewage', 'dump', 'dustbin', 'stench']
+cluster 3 top terms: ['doctor', 'mosquito', 'clinic', 'dengue', 'medicine']
+cluster 4 top terms: ['tap', 'drink', 'pipeline', 'pressure', 'leak']

@@ -1,0 +1,14 @@
+Incidents generated: 1400 points (3 hot-spots of different shapes + 200 noise). Saved incidents.csv
+lat range 13.0301-13.1367, lon range 80.2173-80.3433
+
+k-means (k=4): cluster sizes [505 406 440  49] | ARI vs truth = 0.686 | noise points identified = 0 (k-means assigns every point)
+
+k-distance (k=MinPts=10): knee at rank 1180, eps ~ 0.286 km (~286 m)
+
+ eps(km) | clusters | noise pts | ARI vs ground truth
+  0.114  |    22    |    655    | 0.196   
+  0.286  |     3    |    190    | 0.975   <- chosen
+  0.572  |     3    |    173    | 0.958   
+  1.716  |     1    |      5    | 0.002   
+
+Chosen DBSCAN: clusters = 3 sizes = [377, 428, 405] noise = 190 | true noise points labelled noise: 187/200
