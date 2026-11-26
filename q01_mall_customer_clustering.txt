@@ -1,0 +1,36 @@
+Dataset created: day4/exercises/output/q01_mall_customers.csv (200, 5)
+ CustomerID Gender  Age  Annual Income (k$)  Spending Score (1-100)
+          1   Male   19                  15                      39
+          2   Male   21                  15                      81
+          3 Female   20                  16                       6
+          4 Female   23                  16                      77
+          5 Female   31                  17                      40
+
+Elbow method / silhouette score for k = 2..10
+  k= 2  WCSS=  184499.9  silhouette=0.385
+  k= 3  WCSS=  104192.0  silhouette=0.519
+  k= 4  WCSS=   54230.0  silhouette=0.609
+  k= 5  WCSS=   21805.1  silhouette=0.681
+  k= 6  WCSS=   19309.1  silhouette=0.580
+  k= 7  WCSS=   17821.8  silhouette=0.489
+  k= 8  WCSS=   16194.0  silhouette=0.470
+  k= 9  WCSS=   14621.3  silhouette=0.451
+  k=10  WCSS=   13012.8  silhouette=0.430
+
+K-Means with k = 5 - cluster centres:
+    income  spending   age  size                          segment
+0    87.2      16.7  46.3    35  Senior Citizen Target Customers
+1    86.4      80.3  32.6    55               Priority Customers
+2    24.5      20.3  38.3    32           Low-priority Customers
+3    54.9      48.5  41.3    46                  Usual Customers
+4    25.6      80.7  24.6    32           Young Target Customers
+
+Customers per segment:
+ Segment
+Priority Customers                 55
+Usual Customers                    46
+Senior Citizen Target Customers    35
+Low-priority Customers             32
+Young Target Customers             32
+
+Marketing insight: Priority + Young Target customers are the ones who convert most easily (high spending score).

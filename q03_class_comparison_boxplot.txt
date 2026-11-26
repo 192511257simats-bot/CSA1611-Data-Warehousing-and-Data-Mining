@@ -1,0 +1,12 @@
+  Class  Mean Median Range
+1     A 65.78     66    60
+2     B 62.11     60    34
+
+Higher mean  : Class A
+Higher median: Class A
+Larger range : Class A (= less consistent)
+
+Inference: Class A has the higher mean and median but also a much wider spread (range 60 vs 34), so its
+results are less consistent. Class B is tighter around its median (60); its high mark 84 shows up as an outlier.
+Outliers (Class B): 84 
+Plot saved: day2/output/q03_boxplot.png

@@ -1,0 +1,15 @@
+@relation hotdog_transactions
+
+@attribute Buns {t}
+@attribute Chips {t}
+@attribute Coke {t}
+@attribute Hot_Dogs {t}
+@attribute Ketchup {t}
+
+@data
+t,?,?,t,t
+t,?,?,t,?
+?,t,t,t,?
+?,t,t,?,?
+?,t,?,?,t
+?,t,t,t,?

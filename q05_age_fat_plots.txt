@@ -1,0 +1,7 @@
+(a) Descriptive statistics
+  attribute  mean median    sd
+1       age 46.44   51.0 13.22
+2      %fat 28.78   30.7  9.25
+
+(b)(c) Plots saved: q05_boxplots.png, q05_scatter.png, q05_qqplot.png
+Correlation(age, %fat) = 0.818 

@@ -1,0 +1,79 @@
+ARFF file written: day3/output/q07/hotdog.arff
+
+@relation hotdog_transactions
+
+@attribute Buns {t}
+@attribute Chips {t}
+@attribute Coke {t}
+@attribute Hot_Dogs {t}
+@attribute Ketchup {t}
+
+@data
+t,?,?,t,t
+t,?,?,t,?
+?,t,t,t,?
+?,t,t,?,?
+?,t,?,?,t
+?,t,t,t,?
+
+min_sup = 33.33% of 6 = 2 transactions, min_conf = 60%
+
+a) FREQUENT ITEMSETS (Apriori)
+
+--- C1 (candidate 1-itemsets with support count) ---
+  {Buns}                              2  
+  {Chips}                             4  
+  {Coke}                              3  
+  {Hot_Dogs}                          4  
+  {Ketchup}                           2  
+--- L1 (frequent 1-itemsets) ---
+  {Buns}                              2
+  {Chips}                             4
+  {Coke}                              3
+  {Hot_Dogs}                          4
+  {Ketchup}                           2
+
+--- C2 (candidate 2-itemsets with support count) ---
+  {Buns, Chips}                       0  <- pruned (< min_sup)
+  {Buns, Coke}                        0  <- pruned (< min_sup)
+  {Buns, Hot_Dogs}                    2  
+  {Buns, Ketchup}                     1  <- pruned (< min_sup)
+  {Chips, Coke}                       3  
+  {Chips, Hot_Dogs}                   2  
+  {Chips, Ketchup}                    1  <- pruned (< min_sup)
+  {Coke, Hot_Dogs}                    2  
+  {Coke, Ketchup}                     0  <- pruned (< min_sup)
+  {Hot_Dogs, Ketchup}                 1  <- pruned (< min_sup)
+--- L2 (frequent 2-itemsets) ---
+  {Buns, Hot_Dogs}                    2
+  {Chips, Coke}                       3
+  {Chips, Hot_Dogs}                   2
+  {Coke, Hot_Dogs}                    2
+
+--- C3 (candidate 3-itemsets with support count) ---
+  {Chips, Coke, Hot_Dogs}             2  
+--- L3 (frequent 3-itemsets) ---
+  {Chips, Coke, Hot_Dogs}             2
+
+FP-Growth finds the same itemsets: True
+
+a) ASSOCIATION RULES
+  Rule                                             Sup    Conf   Lift  Decision
+  {Coke} -> {Chips}                               0.50 100.00%   1.50  ACCEPTED
+  {Buns} -> {Hot_Dogs}                            0.33 100.00%   1.50  ACCEPTED
+  {Chips, Hot_Dogs} -> {Coke}                     0.33 100.00%   2.00  ACCEPTED
+  {Coke, Hot_Dogs} -> {Chips}                     0.33 100.00%   1.50  ACCEPTED
+  {Chips} -> {Coke}                               0.50  75.00%   1.50  ACCEPTED
+  {Chips, Coke} -> {Hot_Dogs}                     0.33  66.67%   1.00  ACCEPTED
+  {Coke} -> {Hot_Dogs}                            0.33  66.67%   1.00  ACCEPTED
+  {Coke} -> {Chips, Hot_Dogs}                     0.33  66.67%   2.00  ACCEPTED
+  {Chips} -> {Hot_Dogs}                           0.33  50.00%   0.75  REJECTED
+  {Chips} -> {Coke, Hot_Dogs}                     0.33  50.00%   1.50  REJECTED
+  {Hot_Dogs} -> {Buns}                            0.33  50.00%   1.50  REJECTED
+  {Hot_Dogs} -> {Chips}                           0.33  50.00%   0.75  REJECTED
+  {Hot_Dogs} -> {Coke}                            0.33  50.00%   1.00  REJECTED
+  {Hot_Dogs} -> {Chips, Coke}                     0.33  50.00%   1.00  REJECTED
+
+b) Rules produced by APRIORI vs FP-TREE (FP-Growth) - both mine the same frequent itemsets, so the rule set is identical
+   Apriori rules: 8 | FP-Growth rules: 8 | identical: True
+   ACCEPTED (conf >= 60%): 8   REJECTED (conf < 60%): 6

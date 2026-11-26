@@ -1,0 +1,5 @@
+Total frequency N = 3194 
+N/2 = 1597 
+Cumulative frequencies: 200 650 950 2450 3150 3194 
+Median class: 20-50  (L=20, cf before=950, f=1500, width=30)
+Approximate median = L + ((N/2 - cf)/f) * width = 32.94 years

@@ -1,0 +1,8 @@
+       attribute   mean sample_variance sample_sd population_variance
+  AvgSpeed (kph) 78.556          18.528    4.3044              16.469
+ TotalTime (min) 38.778          12.194    3.4921              10.840
+ population_sd
+        4.0582
+        3.2923
+
+Covariance = -14.986  Correlation = -0.997 (faster average speed -> shorter total time)

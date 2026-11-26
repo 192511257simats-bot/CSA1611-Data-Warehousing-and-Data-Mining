@@ -1,0 +1,65 @@
+@relation tv_brands
+
+@attribute BPL {t}
+@attribute LG {t}
+@attribute ONIDA {t}
+@attribute SAMSUNG {t}
+@attribute SONY {t}
+
+@data
+t,t,?,?,t
+t,?,?,t,?
+t,?,t,?,?
+t,?,?,t,t
+?,?,t,?,t
+t,?,t,?,?
+?,?,t,?,t
+t,t,t,?,t
+t,?,t,?,t
+
+min_sup = 2, min_conf = 50%
+Apriori frequent itemsets = 13, FP-Growth frequent itemsets = 13, same = True
+
+Rules from APRIORI (16):
+  Rule                                             Sup    Conf   Lift
+  {BPL, LG} -> {SONY}                             0.22 100.00%   1.50
+  {LG} -> {BPL}                                   0.22 100.00%   1.29
+  {LG} -> {SONY}                                  0.22 100.00%   1.50
+  {LG} -> {BPL, SONY}                             0.22 100.00%   2.25
+  {LG, SONY} -> {BPL}                             0.22 100.00%   1.29
+  {SAMSUNG} -> {BPL}                              0.22 100.00%   1.29
+  {ONIDA} -> {BPL}                                0.44  66.67%   0.86
+  {ONIDA} -> {SONY}                               0.44  66.67%   1.00
+  {SONY} -> {BPL}                                 0.44  66.67%   0.86
+  {SONY} -> {ONIDA}                               0.44  66.67%   1.00
+  {BPL} -> {ONIDA}                                0.44  57.14%   0.86
+  {BPL} -> {SONY}                                 0.44  57.14%   0.86
+  {BPL, ONIDA} -> {SONY}                          0.22  50.00%   0.75
+  {BPL, SONY} -> {LG}                             0.22  50.00%   2.25
+  {BPL, SONY} -> {ONIDA}                          0.22  50.00%   0.75
+  {ONIDA, SONY} -> {BPL}                          0.22  50.00%   0.64
+
+Rules from FP-GROWTH (16):
+  Rule                                             Sup    Conf   Lift
+  {BPL, LG} -> {SONY}                             0.22 100.00%   1.50
+  {LG} -> {SONY}                                  0.22 100.00%   1.50
+  {LG} -> {BPL, SONY}                             0.22 100.00%   2.25
+  {LG} -> {BPL}                                   0.22 100.00%   1.29
+  {LG, SONY} -> {BPL}                             0.22 100.00%   1.29
+  {SAMSUNG} -> {BPL}                              0.22 100.00%   1.29
+  {ONIDA} -> {SONY}                               0.44  66.67%   1.00
+  {ONIDA} -> {BPL}                                0.44  66.67%   0.86
+  {SONY} -> {ONIDA}                               0.44  66.67%   1.00
+  {SONY} -> {BPL}                                 0.44  66.67%   0.86
+  {BPL} -> {SONY}                                 0.44  57.14%   0.86
+  {BPL} -> {ONIDA}                                0.44  57.14%   0.86
+  {BPL, ONIDA} -> {SONY}                          0.22  50.00%   0.75
+  {BPL, SONY} -> {LG}                             0.22  50.00%   2.25
+  {BPL, SONY} -> {ONIDA}                          0.22  50.00%   0.75
+  {ONIDA, SONY} -> {BPL}                          0.22  50.00%   0.64
+
+Unique to Apriori  : none
+Unique to FP-Growth: none
+Common rules: 16
+
+Conclusion: both algorithms find exactly the same frequent itemsets, so they generate the same rules - they differ only in HOW (level-wise candidate generation vs FP-tree), not in WHAT they find.

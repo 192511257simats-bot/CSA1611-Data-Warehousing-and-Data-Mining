@@ -1,0 +1,11 @@
+RIPPER rules learned (rule-based classifier):
+[[Glucose=>166.4] V [Glucose=146.8-166.4] V [Age=43.0-51.4^Glucose=124.0-134.0] V [Glucose=134.0-146.8^BloodPressure=<54.0] V [BMI=>41.12^BloodPressure=82.0-86.8] V [BMI=>41.12^Glucose=124.0-134.0]]
+
+Comparison on the 30% test set:
+            Rule-based (RIPPER)  Decision tree
+Accuracy                0.7186         0.7662
+Precision               0.6429         0.6849
+Recall                  0.4444         0.6173
+F1                      0.5255         0.6494
+
+Plot saved: day3/output/q08_comparison.png

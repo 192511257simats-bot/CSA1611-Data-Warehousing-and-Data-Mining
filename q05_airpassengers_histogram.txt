@@ -1,0 +1,8 @@
+Break points: 100 200 350 500 650 
+Range of data: 104 622 
+        bin count
+1 (100,200]    48
+2 (200,350]    55
+3 (350,500]    34
+4 (500,650]     7
+Plot saved: day2/output/q05_airpassengers_hist.png

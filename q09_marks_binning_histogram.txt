@@ -1,0 +1,14 @@
+Sorted marks: 50 55 55 55 58 59 60 61 63 63 65 65 67 71 71 72 75 
+n = 17 
+
+(a) Equal-frequency partitioning
+  Bin 1 : 50 55 55 55 58 59 
+  Bin 2 : 60 61 63 63 65 65 
+  Bin 3 : 67 71 71 72 75 
+
+(b) Equal-width partitioning, width = (75-50)/3 = 8.33
+  Bin [50,58.3] : 50 55 55 55 58 
+  Bin (58.3,66.7] : 59 60 61 63 63 65 65 
+  Bin (66.7,75] : 67 71 71 72 75 
+
+Histograms saved: day1/output/q09_histograms.png

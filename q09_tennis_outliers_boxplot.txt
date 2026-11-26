@@ -1,0 +1,7 @@
+  Ajay   Bala Chitra    Dev   Esha Farhan   Gita   Hari   Indu    Jai 
+    12     15     14     18     16     13     17     15     14     41 
+
+Q1 = 14.00  Q3 = 16.75  IQR = 2.75
+Outlier fences: lower = Q1 - 1.5*IQR = 9.88, upper = Q3 + 1.5*IQR = 20.88
+Outlier score(s): 41 -> player(s): Jai 
+Plot saved: day2/output/q09_tennis_boxplot.png

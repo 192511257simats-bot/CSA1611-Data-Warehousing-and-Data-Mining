@@ -1,0 +1,90 @@
+=== b) PREPROCESS ===
+Shape: (768, 9) | class distribution:
+ Outcome
+0    500
+1    268
+
+Missing values coded as 0 : {'Glucose': 5, 'BloodPressure': 35, 'SkinThickness': 227, 'Insulin': 374, 'BMI': 11}
+After median imputation and min-max normalisation (first 3 rows):
+    Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin    BMI  DiabetesPedigreeFunction    Age
+0        0.353    0.671          0.490          0.304    0.133  0.315                     0.234  0.483
+1        0.059    0.265          0.429          0.239    0.133  0.172                     0.117  0.167
+2        0.471    0.897          0.408          0.239    0.133  0.104                     0.254  0.183
+
+=== a) TREE (J48-style decision tree) ===
+Test accuracy = 70.47%   10-fold CV accuracy = 72.91%
+Confusion matrix:
+ [[142  23]
+ [ 52  37]]
+                 precision    recall  f1-score   support
+
+tested_negative       0.73      0.86      0.79       165
+tested_positive       0.62      0.42      0.50        89
+
+       accuracy                           0.70       254
+      macro avg       0.67      0.64      0.64       254
+   weighted avg       0.69      0.70      0.69       254
+
+
+=== c) LOGISTIC regression ===
+Test accuracy = 74.02%   10-fold CV accuracy = 76.17%
+Confusion matrix:
+ [[143  22]
+ [ 44  45]]
+                 precision    recall  f1-score   support
+
+tested_negative       0.76      0.87      0.81       165
+tested_positive       0.67      0.51      0.58        89
+
+       accuracy                           0.74       254
+      macro avg       0.72      0.69      0.69       254
+   weighted avg       0.73      0.74      0.73       254
+
+Decision tree (text):
+ |--- Glucose <= 0.57
+|   |--- Age <= 0.14
+|   |   |--- BMI <= 0.50
+|   |   |   |--- DiabetesPedigreeFunction <= 0.18
+|   |   |   |   |--- class: 0
+|   |   |   |--- DiabetesPedigreeFunction >  0.18
+|   |   |   |   |--- class: 0
+|   |   |--- BMI >  0.50
+|   |   |   |--- class: 1
+|   |--- Age >  0.14
+|   |   |--- BMI <= 0.18
+|   |   |   |--- class: 0
+|   |   |--- BMI >  0.18
+|   |   |   |--- Glucose <= 0.25
+|   |   |   |   |--- class: 0
+|   |   |   |--- Glucose >  0.25
+|   |   |   |   |--- class: 0
+|--- Glucose >  0.57
+|   |--- BMI <= 0.25
+|   |   |--- Glucose <= 0.69
+|   |   |   |--- BMI <= 0.19
+|   |   |   |   |--- class: 0
+|   |   |   |--- BMI >  0.19
+|   |   |   |   |--- class: 0
+|   |   |--- Glucose >  0.69
+|   |   |   |--- class: 1
+|   |--- BMI >  0.25
+|   |   |--- Glucose <= 0.71
+|   |   |   |--- Glucose <= 0.65
+|   |   |   |   |--- class: 1
+|   |   |   |--- Glucose >  0.65
+|   |   |   |   |--- class: 0
+|   |   |--- Glucose >  0.71
+|   |   |   |--- DiabetesPedigreeFunction <= 0.39
+|   |   |   |   |--- class: 1
+|   |   |   |--- DiabetesPedigreeFunction >  0.39
+|   |   |   |   |--- class: 1
+
+Logistic regression coefficients (normalised inputs):
+ BloodPressure               0.32
+SkinThickness               0.35
+Age                         0.55
+Insulin                     0.69
+DiabetesPedigreeFunction    0.94
+Pregnancies                 1.56
+BMI                         2.90
+Glucose                     4.01

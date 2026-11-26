@@ -1,0 +1,7 @@
+# Day 1 - Q10: Inter-quartile range and standard deviation of car speeds (Regular driving style)
+speed <- c(78.3, 81.8, 82, 74.2, 83.4, 84.5, 82.9, 77.5, 80.9, 70.6)
+cat("Speeds:", speed, "\n")
+cat("Q1 =", quantile(speed, 0.25), " Q3 =", quantile(speed, 0.75), "\n")
+cat("Inter-quartile range (IQR) =", IQR(speed), "\n")
+cat("Standard deviation (sample) =", round(sd(speed), 4), "\n")
+cat("Standard deviation (population) =", round(sqrt(mean((speed - mean(speed))^2)), 4), "\n")

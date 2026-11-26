@@ -1,0 +1,3 @@
+(i)   Min-max [0,1]: (35 - 23)/(61 - 23) = 0.3158
+(ii)  Z-score: (35 - 46.44)/12.94 = -0.8844   [mean of age = 46.44, sd given in the question = 12.94]
+(iii) Decimal scaling: j = 2 (max |age| = 61)  ->  35 / 10^2 = 0.35

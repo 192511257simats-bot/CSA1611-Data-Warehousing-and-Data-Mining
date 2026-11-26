@@ -1,0 +1,415 @@
+Q5 database: 5 transactions, min_sup count = 2 (40.00%), min_conf = 80%
+
+================ APRIORI ================
+
+--- C1 (candidate 1-itemsets with support count) ---
+  {A}                                 1  <- pruned (< min_sup)
+  {C}                                 2  
+  {D}                                 1  <- pruned (< min_sup)
+  {E}                                 4  
+  {I}                                 1  <- pruned (< min_sup)
+  {K}                                 5  
+  {M}                                 3  
+  {N}                                 2  
+  {O}                                 3  
+  {U}                                 1  <- pruned (< min_sup)
+  {Y}                                 3  
+--- L1 (frequent 1-itemsets) ---
+  {C}                                 2
+  {E}                                 4
+  {K}                                 5
+  {M}                                 3
+  {N}                                 2
+  {O}                                 3
+  {Y}                                 3
+
+--- C2 (candidate 2-itemsets with support count) ---
+  {C, E}                              1  <- pruned (< min_sup)
+  {C, K}                              2  
+  {C, M}                              1  <- pruned (< min_sup)
+  {C, N}                              0  <- pruned (< min_sup)
+  {C, O}                              1  <- pruned (< min_sup)
+  {C, Y}                              1  <- pruned (< min_sup)
+  {E, K}                              4  
+  {E, M}                              2  
+  {E, N}                              2  
+  {E, O}                              3  
+  {E, Y}                              2  
+  {K, M}                              3  
+  {K, N}                              2  
+  {K, O}                              3  
+  {K, Y}                              3  
+  {M, N}                              1  <- pruned (< min_sup)
+  {M, O}                              1  <- pruned (< min_sup)
+  {M, Y}                              2  
+  {N, O}                              2  
+  {N, Y}                              2  
+  {O, Y}                              2  
+--- L2 (frequent 2-itemsets) ---
+  {C, K}                              2
+  {E, K}                              4
+  {E, M}                              2
+  {E, N}                              2
+  {E, O}                              3
+  {E, Y}                              2
+  {K, M}                              3
+  {K, N}                              2
+  {K, O}                              3
+  {K, Y}                              3
+  {M, Y}                              2
+  {N, O}                              2
+  {N, Y}                              2
+  {O, Y}                              2
+
+--- C3 (candidate 3-itemsets with support count) ---
+  {E, K, M}                           2  
+  {E, K, N}                           2  
+  {E, K, O}                           3  
+  {E, K, Y}                           2  
+  {E, M, Y}                           1  <- pruned (< min_sup)
+  {E, N, O}                           2  
+  {E, N, Y}                           2  
+  {E, O, Y}                           2  
+  {K, M, Y}                           2  
+  {K, N, O}                           2  
+  {K, N, Y}                           2  
+  {K, O, Y}                           2  
+  {N, O, Y}                           2  
+--- L3 (frequent 3-itemsets) ---
+  {E, K, M}                           2
+  {E, K, N}                           2
+  {E, K, O}                           3
+  {E, K, Y}                           2
+  {E, N, O}                           2
+  {E, N, Y}                           2
+  {E, O, Y}                           2
+  {K, M, Y}                           2
+  {K, N, O}                           2
+  {K, N, Y}                           2
+  {K, O, Y}                           2
+  {N, O, Y}                           2
+
+--- C4 (candidate 4-itemsets with support count) ---
+  {E, K, N, O}                        2  
+  {E, K, N, Y}                        2  
+  {E, K, O, Y}                        2  
+  {E, N, O, Y}                        2  
+  {K, N, O, Y}                        2  
+--- L4 (frequent 4-itemsets) ---
+  {E, K, N, O}                        2
+  {E, K, N, Y}                        2
+  {E, K, O, Y}                        2
+  {E, N, O, Y}                        2
+  {K, N, O, Y}                        2
+
+--- C5 (candidate 5-itemsets with support count) ---
+  {E, K, N, O, Y}                     2  
+--- L5 (frequent 5-itemsets) ---
+  {E, K, N, O, Y}                     2
+
+================ FP-GROWTH ================
+Frequent 1-items (descending support): K:5, E:4, M:3, O:3, Y:3, C:2, N:2
+
+FP-tree (item:count, indentation = depth):
+K:5
+  E:4
+    M:2
+      O:1
+        Y:1
+          N:1
+    O:2
+      Y:1
+        N:1
+      C:1
+  M:1
+    Y:1
+      C:1
+
+Conditional pattern bases:
+  item N        cond. pattern base: {K,E,M,O,Y}:1; {K,E,O,Y}:1
+  item Y        cond. pattern base: {E,K,O}:2
+  item O        cond. pattern base: {E,K}:2
+  item K        cond. pattern base: {E}:2
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item K        cond. pattern base: {E}:2
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item O        cond. pattern base: {E,K}:2
+  item K        cond. pattern base: {E}:2
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item K        cond. pattern base: {E}:2
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item C        cond. pattern base: {K,M,Y}:1; {K,E,O}:1
+  item K        cond. pattern base: -
+  item Y        cond. pattern base: {K,E,M,O}:1; {K,E,O}:1; {K,M}:1
+  item O        cond. pattern base: {K,E,M}:1; {K,E}:1
+  item K        cond. pattern base: {E}:2
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item M        cond. pattern base: {K,E}:1; {K}:1
+  item K        cond. pattern base: -
+  item E        cond. pattern base: {K}:2
+  item K        cond. pattern base: -
+  item K        cond. pattern base: -
+  item O        cond. pattern base: {K,E,M}:1; {K,E}:2
+  item K        cond. pattern base: {E}:3
+  item E        cond. pattern base: -
+  item E        cond. pattern base: -
+  item M        cond. pattern base: {K,E}:2; {K}:1
+  item E        cond. pattern base: {K}:2
+  item K        cond. pattern base: -
+  item K        cond. pattern base: -
+  item E        cond. pattern base: {K}:4
+  item K        cond. pattern base: -
+  item K        cond. pattern base: -
+
+Same result from both algorithms: True
+
+All frequent itemsets:
+  {C}                                 support count = 2
+  {E}                                 support count = 4
+  {K}                                 support count = 5
+  {M}                                 support count = 3
+  {N}                                 support count = 2
+  {O}                                 support count = 3
+  {Y}                                 support count = 3
+  {C, K}                              support count = 2
+  {E, K}                              support count = 4
+  {E, M}                              support count = 2
+  {E, N}                              support count = 2
+  {E, O}                              support count = 3
+  {E, Y}                              support count = 2
+  {K, M}                              support count = 3
+  {K, N}                              support count = 2
+  {K, O}                              support count = 3
+  {K, Y}                              support count = 3
+  {M, Y}                              support count = 2
+  {N, O}                              support count = 2
+  {N, Y}                              support count = 2
+  {O, Y}                              support count = 2
+  {E, K, M}                           support count = 2
+  {E, K, N}                           support count = 2
+  {E, K, O}                           support count = 3
+  {E, K, Y}                           support count = 2
+  {E, N, O}                           support count = 2
+  {E, N, Y}                           support count = 2
+  {E, O, Y}                           support count = 2
+  {K, M, Y}                           support count = 2
+  {K, N, O}                           support count = 2
+  {K, N, Y}                           support count = 2
+  {K, O, Y}                           support count = 2
+  {N, O, Y}                           support count = 2
+  {E, K, N, O}                        support count = 2
+  {E, K, N, Y}                        support count = 2
+  {E, K, O, Y}                        support count = 2
+  {E, N, O, Y}                        support count = 2
+  {K, N, O, Y}                        support count = 2
+  {E, K, N, O, Y}                     support count = 2
+
+Association rules (min_conf = 80%); ACCEPTED if conf >= min_conf:
+  Rule                                             Sup    Conf   Lift  Decision
+  {E} -> {K}                                      0.80 100.00%   1.00  ACCEPTED
+  {E, O} -> {K}                                   0.60 100.00%   1.00  ACCEPTED
+  {K, O} -> {E}                                   0.60 100.00%   1.25  ACCEPTED
+  {M} -> {K}                                      0.60 100.00%   1.00  ACCEPTED
+  {O} -> {E}                                      0.60 100.00%   1.25  ACCEPTED
+  {O} -> {K}                                      0.60 100.00%   1.00  ACCEPTED
+  {O} -> {E, K}                                   0.60 100.00%   1.25  ACCEPTED
+  {Y} -> {K}                                      0.60 100.00%   1.00  ACCEPTED
+  {C} -> {K}                                      0.40 100.00%   1.00  ACCEPTED
+  {E, K, N} -> {O}                                0.40 100.00%   1.67  ACCEPTED
+  {E, K, N} -> {Y}                                0.40 100.00%   1.67  ACCEPTED
+  {E, K, N} -> {O, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {E, K, N, O} -> {Y}                             0.40 100.00%   1.67  ACCEPTED
+  {E, K, N, Y} -> {O}                             0.40 100.00%   1.67  ACCEPTED
+  {E, K, O, Y} -> {N}                             0.40 100.00%   2.50  ACCEPTED
+  {E, K, Y} -> {N}                                0.40 100.00%   2.50  ACCEPTED
+  {E, K, Y} -> {O}                                0.40 100.00%   1.67  ACCEPTED
+  {E, K, Y} -> {N, O}                             0.40 100.00%   2.50  ACCEPTED
+  {E, M} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {E, N} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {E, N} -> {O}                                   0.40 100.00%   1.67  ACCEPTED
+  {E, N} -> {Y}                                   0.40 100.00%   1.67  ACCEPTED
+  {E, N} -> {K, O}                                0.40 100.00%   1.67  ACCEPTED
+  {E, N} -> {K, Y}                                0.40 100.00%   1.67  ACCEPTED
+  {E, N} -> {O, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {E, N} -> {K, O, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {E, N, O} -> {K}                                0.40 100.00%   1.00  ACCEPTED
+  {E, N, O} -> {Y}                                0.40 100.00%   1.67  ACCEPTED
+  {E, N, O} -> {K, Y}                             0.40 100.00%   1.67  ACCEPTED
+  {E, N, O, Y} -> {K}                             0.40 100.00%   1.00  ACCEPTED
+  {E, N, Y} -> {K}                                0.40 100.00%   1.00  ACCEPTED
+  {E, N, Y} -> {O}                                0.40 100.00%   1.67  ACCEPTED
+  {E, N, Y} -> {K, O}                             0.40 100.00%   1.67  ACCEPTED
+  {E, O, Y} -> {K}                                0.40 100.00%   1.00  ACCEPTED
+  {E, O, Y} -> {N}                                0.40 100.00%   2.50  ACCEPTED
+  {E, O, Y} -> {K, N}                             0.40 100.00%   2.50  ACCEPTED
+  {E, Y} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {E, Y} -> {N}                                   0.40 100.00%   2.50  ACCEPTED
+  {E, Y} -> {O}                                   0.40 100.00%   1.67  ACCEPTED
+  {E, Y} -> {K, N}                                0.40 100.00%   2.50  ACCEPTED
+  {E, Y} -> {K, O}                                0.40 100.00%   1.67  ACCEPTED
+  {E, Y} -> {N, O}                                0.40 100.00%   2.50  ACCEPTED
+  {E, Y} -> {K, N, O}                             0.40 100.00%   2.50  ACCEPTED
+  {K, N} -> {E}                                   0.40 100.00%   1.25  ACCEPTED
+  {K, N} -> {O}                                   0.40 100.00%   1.67  ACCEPTED
+  {K, N} -> {Y}                                   0.40 100.00%   1.67  ACCEPTED
+  {K, N} -> {E, O}                                0.40 100.00%   1.67  ACCEPTED
+  {K, N} -> {E, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {K, N} -> {O, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {K, N} -> {E, O, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {K, N, O} -> {E}                                0.40 100.00%   1.25  ACCEPTED
+  {K, N, O} -> {Y}                                0.40 100.00%   1.67  ACCEPTED
+  {K, N, O} -> {E, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {K, N, O, Y} -> {E}                             0.40 100.00%   1.25  ACCEPTED
+  {K, N, Y} -> {E}                                0.40 100.00%   1.25  ACCEPTED
+  {K, N, Y} -> {O}                                0.40 100.00%   1.67  ACCEPTED
+  {K, N, Y} -> {E, O}                             0.40 100.00%   1.67  ACCEPTED
+  {K, O, Y} -> {E}                                0.40 100.00%   1.25  ACCEPTED
+  {K, O, Y} -> {N}                                0.40 100.00%   2.50  ACCEPTED
+  {K, O, Y} -> {E, N}                             0.40 100.00%   2.50  ACCEPTED
+  {M, Y} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {N} -> {E}                                      0.40 100.00%   1.25  ACCEPTED
+  {N} -> {K}                                      0.40 100.00%   1.00  ACCEPTED
+  {N} -> {O}                                      0.40 100.00%   1.67  ACCEPTED
+  {N} -> {Y}                                      0.40 100.00%   1.67  ACCEPTED
+  {N} -> {E, K}                                   0.40 100.00%   1.25  ACCEPTED
+  {N} -> {E, O}                                   0.40 100.00%   1.67  ACCEPTED
+  {N} -> {E, Y}                                   0.40 100.00%   2.50  ACCEPTED
+  {N} -> {K, O}                                   0.40 100.00%   1.67  ACCEPTED
+  {N} -> {K, Y}                                   0.40 100.00%   1.67  ACCEPTED
+  {N} -> {O, Y}                                   0.40 100.00%   2.50  ACCEPTED
+  {N} -> {E, K, O}                                0.40 100.00%   1.67  ACCEPTED
+  {N} -> {E, K, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {N} -> {E, O, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {N} -> {K, O, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {N} -> {E, K, O, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {N, O} -> {E}                                   0.40 100.00%   1.25  ACCEPTED
+  {N, O} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {N, O} -> {Y}                                   0.40 100.00%   1.67  ACCEPTED
+  {N, O} -> {E, K}                                0.40 100.00%   1.25  ACCEPTED
+  {N, O} -> {E, Y}                                0.40 100.00%   2.50  ACCEPTED
+  {N, O} -> {K, Y}                                0.40 100.00%   1.67  ACCEPTED
+  {N, O} -> {E, K, Y}                             0.40 100.00%   2.50  ACCEPTED
+  {N, O, Y} -> {E}                                0.40 100.00%   1.25  ACCEPTED
+  {N, O, Y} -> {K}                                0.40 100.00%   1.00  ACCEPTED
+  {N, O, Y} -> {E, K}                             0.40 100.00%   1.25  ACCEPTED
+  {N, Y} -> {E}                                   0.40 100.00%   1.25  ACCEPTED
+  {N, Y} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {N, Y} -> {O}                                   0.40 100.00%   1.67  ACCEPTED
+  {N, Y} -> {E, K}                                0.40 100.00%   1.25  ACCEPTED
+  {N, Y} -> {E, O}                                0.40 100.00%   1.67  ACCEPTED
+  {N, Y} -> {K, O}                                0.40 100.00%   1.67  ACCEPTED
+  {N, Y} -> {E, K, O}                             0.40 100.00%   1.67  ACCEPTED
+  {O, Y} -> {E}                                   0.40 100.00%   1.25  ACCEPTED
+  {O, Y} -> {K}                                   0.40 100.00%   1.00  ACCEPTED
+  {O, Y} -> {N}                                   0.40 100.00%   2.50  ACCEPTED
+  {O, Y} -> {E, K}                                0.40 100.00%   1.25  ACCEPTED
+  {O, Y} -> {E, N}                                0.40 100.00%   2.50  ACCEPTED
+  {O, Y} -> {K, N}                                0.40 100.00%   2.50  ACCEPTED
+  {O, Y} -> {E, K, N}                             0.40 100.00%   2.50  ACCEPTED
+  {K} -> {E}                                      0.80  80.00%   1.00  ACCEPTED
+  {E} -> {O}                                      0.60  75.00%   1.25  REJECTED
+  {E} -> {K, O}                                   0.60  75.00%   1.25  REJECTED
+  {E, K} -> {O}                                   0.60  75.00%   1.25  REJECTED
+  {E, K, O} -> {N}                                0.40  66.67%   1.67  REJECTED
+  {E, K, O} -> {Y}                                0.40  66.67%   1.11  REJECTED
+  {E, K, O} -> {N, Y}                             0.40  66.67%   1.67  REJECTED
+  {E, O} -> {N}                                   0.40  66.67%   1.67  REJECTED
+  {E, O} -> {Y}                                   0.40  66.67%   1.11  REJECTED
+  {E, O} -> {K, N}                                0.40  66.67%   1.67  REJECTED
+  {E, O} -> {K, Y}                                0.40  66.67%   1.11  REJECTED
+  {E, O} -> {N, Y}                                0.40  66.67%   1.67  REJECTED
+  {E, O} -> {K, N, Y}                             0.40  66.67%   1.67  REJECTED
+  {K, M} -> {E}                                   0.40  66.67%   0.83  REJECTED
+  {K, M} -> {Y}                                   0.40  66.67%   1.11  REJECTED
+  {K, O} -> {N}                                   0.40  66.67%   1.67  REJECTED
+  {K, O} -> {Y}                                   0.40  66.67%   1.11  REJECTED
+  {K, O} -> {E, N}                                0.40  66.67%   1.67  REJECTED
+  {K, O} -> {E, Y}                                0.40  66.67%   1.67  REJECTED
+  {K, O} -> {N, Y}                                0.40  66.67%   1.67  REJECTED
+  {K, O} -> {E, N, Y}                             0.40  66.67%   1.67  REJECTED
+  {K, Y} -> {E}                                   0.40  66.67%   0.83  REJECTED
+  {K, Y} -> {M}                                   0.40  66.67%   1.11  REJECTED
+  {K, Y} -> {N}                                   0.40  66.67%   1.67  REJECTED
+  {K, Y} -> {O}                                   0.40  66.67%   1.11  REJECTED
+  {K, Y} -> {E, N}                                0.40  66.67%   1.67  REJECTED
+  {K, Y} -> {E, O}                                0.40  66.67%   1.11  REJECTED
+  {K, Y} -> {N, O}                                0.40  66.67%   1.67  REJECTED
+  {K, Y} -> {E, N, O}                             0.40  66.67%   1.67  REJECTED
+  {M} -> {E}                                      0.40  66.67%   0.83  REJECTED
+  {M} -> {Y}                                      0.40  66.67%   1.11  REJECTED
+  {M} -> {E, K}                                   0.40  66.67%   0.83  REJECTED
+  {M} -> {K, Y}                                   0.40  66.67%   1.11  REJECTED
+  {O} -> {N}                                      0.40  66.67%   1.67  REJECTED
+  {O} -> {Y}                                      0.40  66.67%   1.11  REJECTED
+  {O} -> {E, N}                                   0.40  66.67%   1.67  REJECTED
+  {O} -> {E, Y}                                   0.40  66.67%   1.67  REJECTED
+  {O} -> {K, N}                                   0.40  66.67%   1.67  REJECTED
+  {O} -> {K, Y}                                   0.40  66.67%   1.11  REJECTED
+  {O} -> {N, Y}                                   0.40  66.67%   1.67  REJECTED
+  {O} -> {E, K, N}                                0.40  66.67%   1.67  REJECTED
+  {O} -> {E, K, Y}                                0.40  66.67%   1.67  REJECTED
+  {O} -> {E, N, Y}                                0.40  66.67%   1.67  REJECTED
+  {O} -> {K, N, Y}                                0.40  66.67%   1.67  REJECTED
+  {O} -> {E, K, N, Y}                             0.40  66.67%   1.67  REJECTED
+  {Y} -> {E}                                      0.40  66.67%   0.83  REJECTED
+  {Y} -> {M}                                      0.40  66.67%   1.11  REJECTED
+  {Y} -> {N}                                      0.40  66.67%   1.67  REJECTED
+  {Y} -> {O}                                      0.40  66.67%   1.11  REJECTED
+  {Y} -> {E, K}                                   0.40  66.67%   0.83  REJECTED
+  {Y} -> {E, N}                                   0.40  66.67%   1.67  REJECTED
+  {Y} -> {E, O}                                   0.40  66.67%   1.11  REJECTED
+  {Y} -> {K, M}                                   0.40  66.67%   1.11  REJECTED
+  {Y} -> {K, N}                                   0.40  66.67%   1.67  REJECTED
+  {Y} -> {K, O}                                   0.40  66.67%   1.11  REJECTED
+  {Y} -> {N, O}                                   0.40  66.67%   1.67  REJECTED
+  {Y} -> {E, K, N}                                0.40  66.67%   1.67  REJECTED
+  {Y} -> {E, K, O}                                0.40  66.67%   1.11  REJECTED
+  {Y} -> {E, N, O}                                0.40  66.67%   1.67  REJECTED
+  {Y} -> {K, N, O}                                0.40  66.67%   1.67  REJECTED
+  {Y} -> {E, K, N, O}                             0.40  66.67%   1.67  REJECTED
+  {K} -> {M}                                      0.60  60.00%   1.00  REJECTED
+  {K} -> {O}                                      0.60  60.00%   1.00  REJECTED
+  {K} -> {Y}                                      0.60  60.00%   1.00  REJECTED
+  {K} -> {E, O}                                   0.60  60.00%   1.00  REJECTED
+  {E} -> {M}                                      0.40  50.00%   0.83  REJECTED
+  {E} -> {N}                                      0.40  50.00%   1.25  REJECTED
+  {E} -> {Y}                                      0.40  50.00%   0.83  REJECTED
+  {E} -> {K, M}                                   0.40  50.00%   0.83  REJECTED
+  {E} -> {K, N}                                   0.40  50.00%   1.25  REJECTED
+  {E} -> {K, Y}                                   0.40  50.00%   0.83  REJECTED
+  {E} -> {N, O}                                   0.40  50.00%   1.25  REJECTED
+  {E} -> {N, Y}                                   0.40  50.00%   1.25  REJECTED
+  {E} -> {O, Y}                                   0.40  50.00%   1.25  REJECTED
+  {E} -> {K, N, O}                                0.40  50.00%   1.25  REJECTED
+  {E} -> {K, N, Y}                                0.40  50.00%   1.25  REJECTED
+  {E} -> {K, O, Y}                                0.40  50.00%   1.25  REJECTED
+  {E} -> {N, O, Y}                                0.40  50.00%   1.25  REJECTED
+  {E} -> {K, N, O, Y}                             0.40  50.00%   1.25  REJECTED
+  {E, K} -> {M}                                   0.40  50.00%   0.83  REJECTED
+  {E, K} -> {N}                                   0.40  50.00%   1.25  REJECTED
+  {E, K} -> {Y}                                   0.40  50.00%   0.83  REJECTED
+  {E, K} -> {N, O}                                0.40  50.00%   1.25  REJECTED
+  {E, K} -> {N, Y}                                0.40  50.00%   1.25  REJECTED
+  {E, K} -> {O, Y}                                0.40  50.00%   1.25  REJECTED
+  {E, K} -> {N, O, Y}                             0.40  50.00%   1.25  REJECTED
+  {K} -> {C}                                      0.40  40.00%   1.00  REJECTED
+  {K} -> {N}                                      0.40  40.00%   1.00  REJECTED
+  {K} -> {E, M}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {E, N}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {E, Y}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {M, Y}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {N, O}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {N, Y}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {O, Y}                                   0.40  40.00%   1.00  REJECTED
+  {K} -> {E, N, O}                                0.40  40.00%   1.00  REJECTED
+  {K} -> {E, N, Y}                                0.40  40.00%   1.00  REJECTED
+  {K} -> {E, O, Y}                                0.40  40.00%   1.00  REJECTED
+  {K} -> {N, O, Y}                                0.40  40.00%   1.00  REJECTED
+  {K} -> {E, N, O, Y}                             0.40  40.00%   1.00  REJECTED
+
+101 strong rules out of 200 candidate rules

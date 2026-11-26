@@ -1,0 +1,6 @@
+  cyl mpg.mean mpg.median  mpg.min  mpg.max
+1   4 26.66364   26.00000 21.40000 33.90000
+2   6 19.74286   19.70000 17.80000 21.40000
+3   8 15.10000   15.20000 10.40000 19.20000
+Inference: more cylinders -> lower mpg.
+Plot saved: day2/output/q08_mpg_cyl_boxplot.png

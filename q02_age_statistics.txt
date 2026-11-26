@@ -1,0 +1,10 @@
+(a) Mean   = 29.96 
+    Median = 25 
+(b) Mode(s) = 25 35  (each occurs 4 times)
+    Modality: bimodal - the data has 2 modes
+(c) Midrange = (min + max)/2 = 41.5 
+(d) Quartiles
+    Textbook method (median of lower / upper half, quantile type 2): Q1 = 20  Q3 = 35 
+    R default (type 7, interpolated):                                Q1 = 20.5  Q3 = 35 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  13.00   20.50   25.00   29.96   35.00   70.00 

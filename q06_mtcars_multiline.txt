@@ -1,0 +1,8 @@
+                   mpg  qsec
+Mazda RX4         21.0 16.46
+Mazda RX4 Wag     21.0 17.02
+Datsun 710        22.8 18.61
+Hornet 4 Drive    21.4 19.44
+Hornet Sportabout 18.7 17.02
+Valiant           18.1 20.22
+Plot saved: day2/output/q06_mtcars_lines.png

@@ -1,0 +1,6 @@
+Rows: 768  | BloodPressure = 0 means 'not recorded' -> 35 rows removed
+21-30 31-40 41-50 51-60   60+ 
+68.96 74.05 77.53 80.06 77.92 
+
+cor(Age, BloodPressure) = 0.33 -> blood pressure rises with age; the 41-60 age groups are most affected.
+Plots saved: day2/output/q10_scatter.png, q10_barchart.png

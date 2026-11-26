@@ -1,0 +1,18 @@
+n = 52  (data is already sorted)
+
+(i) Equal-frequency partitioning into 3 bins
+  Bin 1 (18 values): 1 1 5 5 5 5 5 8 8 10 10 10 10 12 14 14 14 15
+  Bin 2 (18 values): 15 15 15 15 15 18 18 18 18 18 18 18 18 20 20 20 20 20
+  Bin 3 (16 values): 20 20 21 21 21 21 25 25 25 25 25 28 28 30 30 30
+
+(ii) Smoothing by bin MEANS
+  Bin 1: every value -> 8.44
+  Bin 2: every value -> 17.72
+  Bin 3: every value -> 24.69
+
+     Smoothing by bin BOUNDARIES (each value -> nearer of min / max of its bin)
+  Bin 1 (min=1, max=15): 1 1 1 1 1 1 1 1 1 15 15 15 15 15 15 15 15 15
+  Bin 2 (min=15, max=20): 15 15 15 15 15 20 20 20 20 20 20 20 20 20 20 20 20 20
+  Bin 3 (min=20, max=30): 20 20 20 20 20 20 20 20 20 20 20 30 30 30 30 30
+
+(iii) Histogram saved: day2/output/q02_histogram.png

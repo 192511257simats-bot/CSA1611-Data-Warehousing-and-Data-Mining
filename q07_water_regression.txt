@@ -1,0 +1,30 @@
+'data.frame':	61 obs. of  5 variables:
+ $ rownames : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ location : chr  "South" "North" "South" "North" ...
+ $ town     : chr  "Bath" "Birkenhead" "Birmingham" "Blackburn" ...
+ $ mortality: int  1247 1668 1466 1800 1609 1558 1807 1299 1637 1359 ...
+ $ hardness : int  105 17 5 14 18 10 15 78 10 84 ...
+
+Correlation(hardness, mortality) = -0.6548 
+
+Call:
+lm(formula = mortality ~ hardness, data = water)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-348.61 -114.52   -7.09  111.52  336.45 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 1676.3556    29.2981  57.217  < 2e-16 ***
+hardness      -3.2261     0.4847  -6.656 1.03e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 143 on 59 degrees of freedom
+Multiple R-squared:  0.4288,	Adjusted R-squared:  0.4191 
+F-statistic:  44.3 on 1 and 59 DF,  p-value: 1.033e-08
+
+
+Predicted mortality for hardness = 88 : 1392.46 
+Conclusion: negative linear relationship - harder water goes with lower mortality.

@@ -1,0 +1,40 @@
+            A  B  C
+5-6 years  18 22 20
+7-8 years   2 28 40
+9-10 years 20 10 40
+
+--- Is there a relationship between age and photograph preference? (chi-square test of independence) ---
+
+	Pearson's Chi-squared test
+
+data:  as.matrix(pref)
+X-squared = 29.603, df = 4, p-value = 5.895e-06
+
+
+--- Covariance / correlation ---
+cov(B, C) = -20 
+
+Sample covariance matrix:
+          A   B         C
+A  97.33333 -74 -46.66667
+B -74.00000  84 -20.00000
+C -46.66667 -20 133.33333
+
+cor(B, C) = -0.189 
+
+Sample correlation matrix:
+        A       B       C
+A  1.0000 -0.8184 -0.4096
+B -0.8184  1.0000 -0.1890
+C -0.4096 -0.1890  1.0000
+
+--- What is wrong with this study? ---
+ * The test assumes every count is an independent observation. If each child gave a preference for several
+   photographs (or the same child is counted in more than one cell) the counts are not independent, and the
+   chi-square p-value is not valid.
+ * The three age groups have different numbers of choices (60, 70, 70), so raw counts are not directly comparable.
+ * Only 3 age groups and 3 photos (n = 200 choices): a significant result says there is an association but not
+   WHY - the photographs differ in many ways (person, pose, background), so age effects are confounded with
+   picture content. The order in which photos were shown is not controlled either.
+ * cov()/cor() here are computed across only 3 rows (age groups), so they are very unstable and should not be
+   over-interpreted.

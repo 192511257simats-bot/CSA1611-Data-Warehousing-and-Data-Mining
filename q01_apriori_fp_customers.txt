@@ -1,0 +1,136 @@
+Customer transactions: 10 transactions, min_sup count = 3 (30.00%), min_conf = 50%
+
+================ APRIORI ================
+
+--- C1 (candidate 1-itemsets with support count) ---
+  {a}                                 7  
+  {b}                                 6  
+  {c}                                 5  
+  {d}                                 6  
+  {e}                                 8  
+--- L1 (frequent 1-itemsets) ---
+  {a}                                 7
+  {b}                                 6
+  {c}                                 5
+  {d}                                 6
+  {e}                                 8
+
+--- C2 (candidate 2-itemsets with support count) ---
+  {a, b}                              4  
+  {a, c}                              3  
+  {a, d}                              4  
+  {a, e}                              6  
+  {b, c}                              3  
+  {b, d}                              2  <- pruned (< min_sup)
+  {b, e}                              5  
+  {c, d}                              2  <- pruned (< min_sup)
+  {c, e}                              3  
+  {d, e}                              5  
+--- L2 (frequent 2-itemsets) ---
+  {a, b}                              4
+  {a, c}                              3
+  {a, d}                              4
+  {a, e}                              6
+  {b, c}                              3
+  {b, e}                              5
+  {c, e}                              3
+  {d, e}                              5
+
+--- C3 (candidate 3-itemsets with support count) ---
+  {a, b, c}                           2  <- pruned (< min_sup)
+  {a, b, e}                           3  
+  {a, c, e}                           2  <- pruned (< min_sup)
+  {a, d, e}                           4  
+  {b, c, e}                           2  <- pruned (< min_sup)
+--- L3 (frequent 3-itemsets) ---
+  {a, b, e}                           3
+  {a, d, e}                           4
+
+================ FP-GROWTH ================
+Frequent 1-items (descending support): e:8, a:7, b:6, d:6, c:5
+
+FP-tree (item:count, indentation = depth):
+e:8
+  a:6
+    d:3
+      c:1
+    b:3
+      c:1
+      d:1
+  b:2
+    c:1
+    d:1
+d:1
+  c:1
+a:1
+  b:1
+    c:1
+
+Conditional pattern bases:
+  item c        cond. pattern base: {e,a,b}:1; {e,a,d}:1; {e,b}:1; {d}:1; {a,b}:1
+  item e        cond. pattern base: {a,b}:1; {a}:1; {b}:1
+  item b        cond. pattern base: {a}:2
+  item a        cond. pattern base: -
+  item d        cond. pattern base: {e,a}:3; {e,a,b}:1; {e,b}:1
+  item a        cond. pattern base: {e}:4
+  item e        cond. pattern base: -
+  item e        cond. pattern base: -
+  item b        cond. pattern base: {e,a}:3; {e}:2; {a}:1
+  item a        cond. pattern base: {e}:3
+  item e        cond. pattern base: -
+  item e        cond. pattern base: -
+  item a        cond. pattern base: {e}:6
+  item e        cond. pattern base: -
+  item e        cond. pattern base: -
+
+Same result from both algorithms: True
+
+All frequent itemsets:
+  {a}                                 support count = 7
+  {b}                                 support count = 6
+  {c}                                 support count = 5
+  {d}                                 support count = 6
+  {e}                                 support count = 8
+  {a, b}                              support count = 4
+  {a, c}                              support count = 3
+  {a, d}                              support count = 4
+  {a, e}                              support count = 6
+  {b, c}                              support count = 3
+  {b, e}                              support count = 5
+  {c, e}                              support count = 3
+  {d, e}                              support count = 5
+  {a, b, e}                           support count = 3
+  {a, d, e}                           support count = 4
+
+Association rules (min_conf = 50%); ACCEPTED if conf >= min_conf:
+  Rule                                             Sup    Conf   Lift  Decision
+  {a, d} -> {e}                                   0.40 100.00%   1.25  ACCEPTED
+  {a} -> {e}                                      0.60  85.71%   1.07  ACCEPTED
+  {b} -> {e}                                      0.50  83.33%   1.04  ACCEPTED
+  {d} -> {e}                                      0.50  83.33%   1.04  ACCEPTED
+  {d, e} -> {a}                                   0.40  80.00%   1.14  ACCEPTED
+  {e} -> {a}                                      0.60  75.00%   1.07  ACCEPTED
+  {a, b} -> {e}                                   0.30  75.00%   0.94  ACCEPTED
+  {a, e} -> {d}                                   0.40  66.67%   1.11  ACCEPTED
+  {b} -> {a}                                      0.40  66.67%   0.95  ACCEPTED
+  {d} -> {a}                                      0.40  66.67%   0.95  ACCEPTED
+  {d} -> {a, e}                                   0.40  66.67%   1.11  ACCEPTED
+  {e} -> {b}                                      0.50  62.50%   1.04  ACCEPTED
+  {e} -> {d}                                      0.50  62.50%   1.04  ACCEPTED
+  {b, e} -> {a}                                   0.30  60.00%   0.86  ACCEPTED
+  {c} -> {a}                                      0.30  60.00%   0.86  ACCEPTED
+  {c} -> {b}                                      0.30  60.00%   1.00  ACCEPTED
+  {c} -> {e}                                      0.30  60.00%   0.75  ACCEPTED
+  {a} -> {b}                                      0.40  57.14%   0.95  ACCEPTED
+  {a} -> {d}                                      0.40  57.14%   0.95  ACCEPTED
+  {a} -> {d, e}                                   0.40  57.14%   1.14  ACCEPTED
+  {e} -> {a, d}                                   0.40  50.00%   1.25  ACCEPTED
+  {a, e} -> {b}                                   0.30  50.00%   0.83  ACCEPTED
+  {b} -> {c}                                      0.30  50.00%   1.00  ACCEPTED
+  {b} -> {a, e}                                   0.30  50.00%   0.83  ACCEPTED
+  {a} -> {c}                                      0.30  42.86%   0.86  REJECTED
+  {a} -> {b, e}                                   0.30  42.86%   0.86  REJECTED
+  {e} -> {c}                                      0.30  37.50%   0.75  REJECTED
+  {e} -> {a, b}                                   0.30  37.50%   0.94  REJECTED
+
+24 strong rules out of 28 candidate rules

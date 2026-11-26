@@ -1,0 +1,57 @@
+(a) ARFF written: day4/exercises/output/q09_gender.arff  ( 22 records )
+ Height  Weight Gender Decision  Correct
+    185      90   Male     Male     True
+    190      85   Male     Male     True
+    182      70   Male     Male     True
+    178      85   Male     Male     True
+    175      90   Male     Male     True
+    170      82   Male     Male     True
+    183      75   Male     Male     True
+    195     100   Male     Male     True
+    169      81   Male     Male     True
+    176      65 Female   Female     True
+    165      55 Female   Female     True
+    160      50 Female   Female     True
+    172      60 Female   Female     True
+    168      58 Female   Female     True
+    174      70 Female   Female     True
+    158      48 Female   Female     True
+    180      80 Female   Female     True
+    177      78 Female   Female     True
+    171      62 Female   Female     True
+    179      79 Female   Female     True
+    186      70 Female     Male    False
+    166      84 Female     Male    False
+
+Accuracy of the given tree = 20/22 = 90.91%
+
+(b) Rule-based induction - one rule per root-to-leaf path of the tree:
+  R1: IF Height > 180 THEN Gender = Male
+  R2: IF Height <= 180 AND Weight > 80 THEN Gender = Male
+  R3: IF Height <= 180 AND Weight <= 80 THEN Gender = Female
+
+Rules learnt directly from the data by RIPPER (sequential covering): [[Weight=>89.5] V [Weight=84.8-89.5] V [Height=168.2-170.3] V [Height=182.8-185.9]]
+
+Tree re-learnt by CART from the data:
+ |--- Weight <= 80.50
+|   |--- Height <= 181.00
+|   |   |--- class: Female
+|   |--- Height >  181.00
+|   |   |--- class: Male
+|--- Weight >  80.50
+|   |--- Height <= 167.50
+|   |   |--- class: Female
+|   |--- Height >  167.50
+|   |   |--- class: Male
+
+(c) Comparison (training data)
+  Given decision tree: accuracy = 90.91%
+[[ 9  0]
+ [ 2 11]]
+  Rule-based (RIPPER): accuracy = 95.45%
+[[ 8  1]
+ [ 0 13]]
+
+The tree and its extracted rules (R1-R3) are logically identical, so they classify every record the same way.
+RIPPER scores higher on this training data only because it adds narrow Height/Weight-interval rules that memorise the 2 exception records
+(overfitting); the simple 3-rule set is the better general model.

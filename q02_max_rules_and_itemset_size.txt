@@ -1,0 +1,9 @@
+Items: ['Beer', 'Bread', 'Butter', 'Cookies', 'Diapers', 'Milk']  d = 6
+
+(a) Maximum number of rules R = 3^6 - 2^7 + 1 = 602   (brute-force enumeration = 602)
+(b) Maximum frequent itemset size = size of the largest transaction = 4  e.g. ['Bread', 'Butter', 'Diapers', 'Milk']
+    itemsets of size 1 with support > 0: 6
+    itemsets of size 2 with support > 0: 13
+    itemsets of size 3 with support > 0: 8
+    itemsets of size 4 with support > 0: 1
+    itemsets of size 5 with support > 0: 0

@@ -1,0 +1,20 @@
+@relation monkey
+
+@attribute A {t}
+@attribute C {t}
+@attribute D {t}
+@attribute E {t}
+@attribute I {t}
+@attribute K {t}
+@attribute M {t}
+@attribute N {t}
+@attribute O {t}
+@attribute U {t}
+@attribute Y {t}
+
+@data
+?,?,?,t,?,t,t,t,t,?,t
+?,?,t,t,?,t,?,t,t,?,t
+t,?,?,t,?,t,t,?,?,?,?
+?,t,?,?,?,t,t,?,?,t,t
+?,t,?,t,t,t,?,?,t,?,?
